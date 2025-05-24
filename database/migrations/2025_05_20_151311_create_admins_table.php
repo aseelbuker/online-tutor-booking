@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->A_Id();
             $table->string("Admin_name")->unique();
-            $table->A_email();
+            $table->string("email")->unique();
             $table->A_password();
             $table->timestamps();
         });
