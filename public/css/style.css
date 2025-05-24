@@ -1,0 +1,167 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background-color: white;
+    border-bottom: 1px solid #eee;
+}
+
+header nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+header div a {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+header div a:last-child {
+    background-color: #00bfa6;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+/* Hero Section */
+section:nth-of-type(1) {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 80px 10%;
+}
+
+section:nth-of-type(1) h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+section:nth-of-type(1) p {
+    font-size: 18px;
+}
+
+/* Story Section */
+section:nth-of-type(2) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 10%;
+    gap: 40px;
+}
+
+section:nth-of-type(2) img {
+    width: 50%;
+    border-radius: 10px;
+}
+
+section:nth-of-type(2) h2 {
+    color: #00bfa6;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* Mission & Values */
+section:nth-of-type(3) {
+    background-color: #f5f8fa;
+    padding: 60px 10%;
+    text-align: center;
+}
+
+section:nth-of-type(3) h2 {
+    color: #00bfa6;
+    font-size: 28px;
+}
+
+section:nth-of-type(3) p {
+    margin: 10px auto 30px;
+    max-width: 600px;
+}
+
+section:nth-of-type(3) .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+section:nth-of-type(3) .grid div {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* Leadership Team */
+section:nth-of-type(4) {
+    text-align: center;
+    padding: 60px 10%;
+}
+
+section:nth-of-type(4) h3 {
+    color: #00bfa6;
+    margin-bottom: 40px;
+}
+
+section:nth-of-type(4) div {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+section:nth-of-type(4) img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Footer */
+footer {
+    background-color: #f0f0f0;
+    padding: 40px 10%;
+    color: #333;
+}
+
+footer h4 {
+    margin-bottom: 10px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+footer > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer small {
+    display: block;
+    margin-top: 40px;
+    text-align: center;
+}
+
