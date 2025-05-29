@@ -10,6 +10,7 @@ class student extends Model
         'name',
         'email',
         'password',
-        'language_pref'
     ];
+
+    
 }
