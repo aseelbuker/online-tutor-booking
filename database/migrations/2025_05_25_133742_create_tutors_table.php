@@ -12,15 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tutors', function (Blueprint $table) {
-            $table->id('tutor_id');
+            $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->text('qualification');
-            $table->string('background_check_status')->default('pending');
-            $table->decimal('hourly_rate');
+            $table->text('qualification')->nullable();
+            $table->enum('background_check_status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->decimal('hourly_rate', 4, 2)->nullable();
+            $table->string('profile_picture')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->text('bio')->nullable();
+            $table->string('availability')->nullable();
             $table->timestamps();
         });
+    }
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'subject_tutor');
     }
 
     /**

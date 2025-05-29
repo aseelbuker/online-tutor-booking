@@ -12,6 +12,10 @@ class Tutor extends Model
         'password',
         'qualification',
         'background_check_status',
-        'hourly_rate'
+        'hourly_rate',
+        'profile_picture',
+        'phone_number',
+        'bio',
+        'availability',
     ];
 }
