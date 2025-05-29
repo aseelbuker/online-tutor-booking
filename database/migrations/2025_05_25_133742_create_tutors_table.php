@@ -15,6 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string("gender")->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('address')->nullable();
+            $table->decimal('rating', 2, 1)->default(5.0)->check('rating >= 0 and rating <= 10');
+            $table->integer('total_reviews')->default(0);
+            $table->integer('total_students')->default(0);
+            $table->string('city')->nullable();
             $table->string('password');
             $table->text('qualification')->nullable();
             $table->enum('background_check_status', ['pending', 'approved', 'rejected'])->default('pending');
@@ -26,10 +33,20 @@ return new class extends Migration
             $table->timestamps();
         });
     }
+    // tutor have table schedule that from it can set their availability is this right ?
+    // tutor can have many subjects
+    // tutor can have many subjects
+    // tutor can have many subjects
+    // tutor can report many students
+    // tutor can send messages to students
+    // tutor can have many reviews
+    // tutor can  set their availability and time slots
     public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'subject_tutor');
     }
+
+    
 
     /**
      * Reverse the migrations.
