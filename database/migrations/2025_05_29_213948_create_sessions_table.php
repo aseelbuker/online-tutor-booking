@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Booking;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +24,14 @@ return new class extends Migration
     // info relatied to the session
     $table->timestamps();
         });
+    }
+    public function booking(): BelongsTo
+    {
+        return $this->belongsTo(Booking::class);
+    }
+    public function progressLogs(): HasMany
+    {
+        return $this->hasMany(Progress::class);
     }
 
     /**
