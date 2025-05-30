@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sessions', function (Blueprint $table) {
-             $table->id('session_id');
+        Schema::create('reviews', function (Blueprint $table) {
+$table->id('review_id');
     $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
-    $table->dateTime('start_time')->nullable();
-    $table->dateTime('end_time')->nullable();
-    $table->string('session_link')->nullable();
-    $table->text('notes')->nullable();
-    // info relatied to the session
-    $table->timestamps();
+    $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
+    $table->foreignId('tutor_id')->constrained('tutors')->cascadeOnDelete();
+    $table->tinyInteger('rating');
+    $table->text('comments')->nullable();
+                $table->timestamps();
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('reviews');
     }
 };
