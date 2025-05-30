@@ -34,12 +34,9 @@ class Booking extends Model
     {
         return $this->hasOne(Session::class);
     }
-
-
-
     public function review()
     {
-        return $this->hasOne(Reviews::class);
+        return $this->hasOne(Review::class);
     }
 
     // public function payment()
