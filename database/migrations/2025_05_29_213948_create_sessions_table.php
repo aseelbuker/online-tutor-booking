@@ -15,25 +15,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sessions', function (Blueprint $table) {
-             $table->id('session_id');
+
+
+    $table->id('session_id');
     $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
     $table->dateTime('start_time')->nullable();
     $table->dateTime('end_time')->nullable();
-    $table->string('session_link')->nullable();
+    $table->string('meeting_link')->nullable(); 
+    $table->string('status')->default('pending');
     $table->text('notes')->nullable();
     // info relatied to the session
     $table->timestamps();
         });
     }
-    public function booking(): BelongsTo
-    {
-        return $this->belongsTo(Booking::class);
-    }
-    public function progressLogs(): HasMany
-    {
-        return $this->hasMany(Progress::class);
-    }
-
+    
     /**
      * Reverse the migrations.
      */
