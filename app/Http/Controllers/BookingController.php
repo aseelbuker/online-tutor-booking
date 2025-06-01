@@ -83,4 +83,5 @@ class BookingController extends Controller
         $booking = Booking::where('status', $status)->with(['student', 'tutor'])->get();
         return response()->json(["Data" => $booking]);
     }
+    ///////////////////////
 }
