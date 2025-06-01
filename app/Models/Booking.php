@@ -12,6 +12,7 @@ class Booking extends Model
         'subject_id',
         'scheduled_time',
         'status',
+        "price"
     ];
 
     // Relations
