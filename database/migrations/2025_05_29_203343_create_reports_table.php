@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('reported_by')->constrained('users')->onDelete('cascade'); // Can be tutor or student
+            // $table->morphs('reportable');  later repotable types like review, message, etc.
+            $table->text('reason')->nullable();
+            $table->boolean('resolved')->default(false); 
             $table->timestamps();
         });
     }

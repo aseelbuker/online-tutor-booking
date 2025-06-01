@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tutor extends Model
 {
@@ -26,4 +27,28 @@ class Tutor extends Model
         'availability',
         
     ];
+
+    public function student():HasMany
+    {
+        return $this->hasMany(Student::class);
+    }
+    public function sessions(): HasMany
+    {
+        return $this->hasMany(ClassSession::class);
+    }
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function subjects(): HasMany
+    {
+        return $this->hasMany(Subject::class);
+    }
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    // do the notifications and payments later
+     
 }

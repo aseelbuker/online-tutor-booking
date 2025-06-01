@@ -12,6 +12,7 @@ class Booking extends Model
         'subject_id',
         'scheduled_time',
         'status',
+        "price"
     ];
 
     // Relations
@@ -32,7 +33,7 @@ class Booking extends Model
 
     public function session()
     {
-        return $this->hasOne(Session::class);
+        return $this->hasOne(ClassSession::class);
     }
     public function review()
     {
