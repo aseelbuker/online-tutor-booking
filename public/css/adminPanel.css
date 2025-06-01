@@ -1,0 +1,37 @@
+
+/* Sidebar hover and active */
+.nav-link {
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #e8f0ff;
+    color: #0d6efd;
+    border-radius: 4px;
+}
+
+.nav-link.active:hover {
+    background-color: #0d6efd;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+.nav-tabs .nav-link {
+    color: #0d6efd;
+    background-color: transparent;
+    border: none;
+    transition: all 0.3s;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #e8f0ff;
+    border-radius: 6px;
+}
+
+.nav-tabs .nav-link.active:hover {
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 6px;
+}
