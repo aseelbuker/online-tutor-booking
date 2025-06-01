@@ -14,17 +14,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sessions', function (Blueprint $table) {
+        Schema::create('class_sessions', function (Blueprint $table) {
 
 
-    $table->id('session_id');
-    $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
+    $table->foreignId('booking_id')->constrained('bookings');
     $table->dateTime('start_time')->nullable();
     $table->dateTime('end_time')->nullable();
     $table->string('meeting_link')->nullable(); 
     $table->string('status')->default('pending');
     $table->text('notes')->nullable();
-    // info relatied to the session
     $table->timestamps();
         });
     }

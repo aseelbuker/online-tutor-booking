@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Session extends Model
+class ClassSession extends Model
 {
     protected $fillable = [
         'booking_id',
@@ -18,7 +18,7 @@ class Session extends Model
 
     public function booking(): BelongsTo
     {
-        return $this->belongsTo(Booking::class,);
+        return $this->belongsTo(Booking::class, 'booking_id', 'id');
     }
     
     
