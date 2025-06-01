@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassSession;
 use App\Models\Session;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class SessionController extends Controller
 {
     public function index()
     {
-        $sessions = Session::with('booking')->get();
+        $sessions = ClassSession::with('booking')->get();
         return response()->json(["Data" => $sessions]);
     }
 
@@ -23,7 +24,7 @@ class SessionController extends Controller
             'ended_at' => 'nullable|date|after_or_equal:started_at',
         ]);
 
-        $session = Session::create($validated);
+        $session = ClassSession::create($validated);
         return response()->json([
             "message" => "Session created successfully",
             "Data" => $session
@@ -32,7 +33,7 @@ class SessionController extends Controller
 
     public function show(string $id)
     {
-        $session = Session::with('booking')->findOrFail($id);
+        $session = ClassSession::with('booking')->findOrFail($id);
         return response()->json(["Data" => $session]);
     }
 
@@ -45,7 +46,7 @@ class SessionController extends Controller
             'ended_at' => 'nullable|date|after_or_equal:started_at',
         ]);
 
-        $session = Session::findOrFail($id);
+        $session = ClassSession::findOrFail($id);
         $session->update($validated);
 
         return response()->json(["message" => "Session updated successfully"]);
@@ -53,7 +54,7 @@ class SessionController extends Controller
 
     public function destroy(string $id)
     {
-        $session = Session::findOrFail($id);
+        $session = ClassSession::findOrFail($id);
         $session->delete();
         return response()->json(["message" => "Session deleted successfully"]);
     }
