@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tutors', function (Blueprint $table) {
-            $table->id("tutor_id");
+            $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->string("gender")->nullable();
@@ -41,10 +41,7 @@ return new class extends Migration
     // tutor can send messages to students
     // tutor can have many reviews
     // tutor can  set their availability and time slots
-    public function subjects()
-    {
-        return $this->belongsToMany(Subject::class, 'subject_tutor');
-    }
+    
 
     
 
