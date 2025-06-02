@@ -24,3 +24,6 @@ Route::get('/', function () {
 >>>>>>> e2a60ca1e32ac96c005d7d7f70d4586e7cef6c7e
 });
 
+
+
+
