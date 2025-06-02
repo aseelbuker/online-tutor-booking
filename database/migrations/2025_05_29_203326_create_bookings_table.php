@@ -12,16 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->id('booking_id');
-            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
-            $table->foreignId('tutor_id')->constrained('tutors')->cascadeOnDelete();
-            $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete();
-            $table->dateTime('scheduled_time');
-            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
-            $table->decimal('price', 8, 2)->nullable();
+    $table->id(); // booking_id
 
-            $table->timestamps();
-        });
+    // Foreign keys (assumes referenced tables have an 'id' column)
+    $table->foreignId('student_id')->constrained()->cascadeOnDelete();
+    $table->foreignId('tutor_id')->constrained()->cascadeOnDelete();
+    $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
+
+    $table->dateTime('scheduled_time');
+    $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
+    $table->decimal('price', 8, 2)->nullable();
+    $table->timestamps();
+});
+
     }
 
     /**

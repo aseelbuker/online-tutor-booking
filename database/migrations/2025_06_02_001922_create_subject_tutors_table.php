@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('subject_tutors', function (Blueprint $table) {
-            // cascadeOnDelete(): If a tutor is deleted, all related records in subject_tutors will also be deleted automatically.
-            $table->foreignId('tutor_id')->constrained('tutors')->cascadeOnDelete();
-            $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete();
-            $table->primary(['tutor_id', 'subject_id']);
+            $table->id();
+            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('tutor_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
