@@ -3,74 +3,79 @@
 namespace App\Http\Controllers;
 
 use App\Models\Session;
-use App\Models\Booking;
 use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
-    // List all sessions
-    public function index()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index() 
     {
-        $sessions = Session::with('booking')->get();
-        return view('sessions.index', compact('sessions'));
+        $session =  Session::all();
+        return response()->json([
+            "Data" => $session
+        ]);
     }
 
-    // Show form to create a new session
-    public function create()
-    {
-        $bookings = Booking::all(); // Needed to select a booking
-        return view('sessions.create', compact('bookings'));
-    }
-
-    // Store new session
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'booking_id' => 'required|exists:bookings,id',
-            'start_time' => 'nullable|date',
+            'start_time' => 'required|date',
             'end_time' => 'nullable|date',
-            'meeting_link' => 'nullable|string',
-            'status' => 'required|in:pending,confirmed,completed,canceled',
+            'session_link' => 'nullable|string',
             'notes' => 'nullable|string',
         ]);
-
-        Session::create($request->all());
-        return redirect()->route('sessions.index')->with('success', 'Session created successfully.');
+        $session = Session::create($validated);
+        return response()->json([
+            "message" => "Session created successfully",
+            "Data" => $session
+        ], 201);
+        
     }
 
-    // Show a single session
-    public function show(Session $session)
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
-        return view('sessions.show', compact('session'));
+        $session = Session::findOrFail($id);
+        return response()->json([
+            "Data" => $session
+        ]);
     }
 
-    // Edit form
-    public function edit(Session $session)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
     {
-        $bookings = Booking::all();
-        return view('sessions.edit', compact('session', 'bookings'));
-    }
-
-    // Update
-    public function update(Request $request, Session $session)
-    {
-        $request->validate([
+        $validated = $request->validate([
             'booking_id' => 'required|exists:bookings,id',
-            'start_time' => 'nullable|date',
+            'start_time' => 'required|date',
             'end_time' => 'nullable|date',
-            'meeting_link' => 'nullable|string',
-            'status' => 'required|in:pending,confirmed,completed,canceled',
+            'session_link' => 'nullable|string',
             'notes' => 'nullable|string',
         ]);
-
-        $session->update($request->all());
-        return redirect()->route('sessions.index')->with('success', 'Session updated successfully.');
+        $session = Session::findOrFail($id);
+        $session->update($validated);
+        return response()->json([
+            'message'=> "Session updated successfully",]);
     }
 
-    // Delete
-    public function destroy(Session $session)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
     {
+        $session = Session::findOrFail($id);
         $session->delete();
-        return redirect()->route('sessions.index')->with('success', 'Session deleted.');
+        return response()->json([
+            "message"=> "Session deleted successfully",
+            ]);
     }
 }
