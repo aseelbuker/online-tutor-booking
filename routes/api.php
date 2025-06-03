@@ -17,7 +17,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // <-----------------------------Admin Routes----------------------------->
-Route::apiResource('admin', AdminController::class);
+Route::apiResource('admins', AdminController::class);
 
 // <-----------------------------Subject Tutor Routes----------------------------->
 Route::apiResource('subject-tutors', SubjectTutorController::class);
