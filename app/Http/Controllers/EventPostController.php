@@ -9,8 +9,13 @@ class EventPostController extends Controller
 {
     public function index()
     {
-        $posts = EventPost::all();
-        return response()->json(["Data" => $posts]);
+        $events = EventPost::all();
+        return view('eventpost.index', compact('events'));
+    }
+
+    public function create()
+    {
+        return view('eventpost.create');
     }
 
     public function store(Request $request)
@@ -24,24 +29,27 @@ class EventPostController extends Controller
             'link' => 'nullable|url',
             'visible' => 'boolean',
         ]);
-
-        $post = EventPost::create($validated);
-        return response()->json([
-            "message" => "Event post created successfully",
-            "Data" => $post
-        ]);
+        EventPost::create($validated);
+        return redirect()->route('eventpost.index')->with('success', 'Event post created successfully');
     }
 
-    public function show(string $id)
+    public function show($id)
     {
-        $post = EventPost::findOrFail($id);
-        return response()->json(["Data" => $post]);
+        $event = EventPost::findOrFail($id);
+        return view('eventpost.show', compact('event'));
     }
 
-    public function update(Request $request, string $id)
+    public function edit($id)
     {
+        $event = EventPost::findOrFail($id);
+        return view('eventpost.edit', compact('event'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $event = EventPost::findOrFail($id);
         $validated = $request->validate([
-            'title' => 'sometimes|required|string|max:255',
+            'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'banner_url' => 'nullable|string|max:500',
             'event_date' => 'nullable|date',
@@ -49,17 +57,15 @@ class EventPostController extends Controller
             'link' => 'nullable|url',
             'visible' => 'boolean',
         ]);
-
-        $post = EventPost::findOrFail($id);
-        $post->update($validated);
-        return response()->json(["message" => "Event post updated"]);
+        $event->update($validated);
+        return redirect()->route('eventpost.index')->with('success', 'Event post updated');
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        $post = EventPost::findOrFail($id);
-        $post->delete();
-        return response()->json(["message" => "Event post deleted"]);
+        $event = EventPost::findOrFail($id);
+        $event->delete();
+        return redirect()->route('eventpost.index')->with('success', 'Event post deleted');
     }
 
     // 🔄 Custom: Toggle Visibility

@@ -12,11 +12,16 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = student::all();
-        return response()->json([
-            'status' => 200,
-            'students' => $student
-        ]);
+        $students = student::all();
+        return view('student.index', compact('students'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('student.create');
     }
 
     /**
@@ -24,61 +29,55 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:students,email',
             'password' => 'required|string|min:8',
         ]);
-
-        $student = student::create($validation);
-        return response()->json([
-            'data' => $student ,
-            "message" => "Student created successfully",
-        ]);
+        student::create($validated);
+        return redirect()->route('student.index')->with('success', 'Student created successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $student = student::findOrFail($id);
-        return response()->json([
-            'data' => $student , 
-            "message" => "Student retrieved successfully",
+        return view('student.show', compact('student'));
+    }
 
-        ]);
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        $student = student::findOrFail($id);
+        return view('student.edit', compact('student'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $validation = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students,email',
-            'password' => 'required|string|min:8',
-        ]);
-
         $student = student::findOrFail($id);
-        $student->update($validation);
-        return response()->json([
-            'status' => 200,
-            'student' => $student
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:students,email,' . $student->id,
+            'password' => 'nullable|string|min:8',
         ]);
+        $student->update(array_filter($validated));
+        return redirect()->route('student.index')->with('success', 'Student updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $student = student::findOrFail($id);
         $student->delete();
-        return response()->json([
-            'status' => 200,
-            'message' => 'Student deleted successfully'
-        ]);
+        return redirect()->route('student.index')->with('success', 'Student deleted successfully');
     }
 }

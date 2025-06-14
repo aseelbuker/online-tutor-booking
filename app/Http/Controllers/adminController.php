@@ -7,42 +7,56 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $admins = Admin::all();
-        return response()->json(["Data" => $admins]);
+        return view('admin.index', compact('admins'));
     }
 
-    public function store(Request $request) {
+    public function create()
+    {
+        return view('admin.create');
+    }
+
+    public function store(Request $request)
+    {
         $validated = $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:admins,email',
-            'password' => 'required|min:6',
+            'password' => 'required|string|min:6',
         ]);
-
-
-        $admin = Admin::create($validated);
-        return response()->json(["message" => "Admin created successfully", "Data" => $admin]);
+        Admin::create($validated);
+        return redirect()->route('admin.index')->with('success', 'Admin created successfully');
     }
 
-    public function show(string $id) {
+    public function show($id)
+    {
         $admin = Admin::findOrFail($id);
-        return response()->json(["message" => "Admin fetched successfully", "Data" => $admin]);
+        return view('admin.show', compact('admin'));
     }
 
-    public function update(Request $request, string $id) {
+    public function edit($id)
+    {
+        $admin = Admin::findOrFail($id);
+        return view('admin.edit', compact('admin'));
+    }
+
+    public function update(Request $request, $id)
+    {
         $admin = Admin::findOrFail($id);
         $validated = $request->validate([
-            'name' => 'sometimes|string',
-            'email' => 'sometimes|email|unique:admins,email,' . $admin->id,
-            'password' => 'sometimes|min:6',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:admins,email,' . $admin->id,
+            'password' => 'nullable|string|min:6',
         ]);
-
-        $admin->update($validated);
-        return response()->json(["message" => "Admin updated successfully"]);
+        $admin->update(array_filter($validated));
+        return redirect()->route('admin.index')->with('success', 'Admin updated successfully');
     }
 
-    public function destroy(string $id) {
-        Admin::findOrFail($id)->delete();
-        return response()->json(["message" => "Admin deleted successfully"]);
+    public function destroy($id)
+    {
+        $admin = Admin::findOrFail($id);
+        $admin->delete();
+        return redirect()->route('admin.index')->with('success', 'Admin deleted successfully');
     }
 }
