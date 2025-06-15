@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
- public function index()
+    public function index()
     {
         $subjects = Subject::all();
-        return response()->json([
-            "Data" => $subjects
-        ]);
+        return view('subject.index', compact('subjects'));
+    }
+
+    public function create()
+    {
+        return view('subject.create');
     }
 
     public function store(Request $request)
@@ -21,46 +24,38 @@ class SubjectController extends Controller
             'name' => 'required|string',
             'level' => 'required|string',
         ]);
-
-        $subject = Subject::create($validated);
-
-        return response()->json([
-            "message" => "Subject created successfully",
-            "Data" => $subject
-        ]);
+        Subject::create($validated);
+        return redirect()->route('subject.index')->with('success', 'Subject created successfully');
     }
 
-    public function show(string $id)
+    public function show($id)
     {
         $subject = Subject::findOrFail($id);
-        return response()->json([
-            "Data" => $subject
-        ]);
+        return view('subject.show', compact('subject'));
     }
 
-    public function update(Request $request, string $id)
+    public function edit($id)
     {
+        $subject = Subject::findOrFail($id);
+        return view('subject.edit', compact('subject'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $subject = Subject::findOrFail($id);
         $validated = $request->validate([
             'name' => 'required|string',
             'level' => 'required|string',
         ]);
-
-        $subject = Subject::findOrFail($id);
         $subject->update($validated);
-
-        return response()->json([
-            "message" => "Subject updated successfully"
-        ]);
+        return redirect()->route('subject.index')->with('success', 'Subject updated successfully');
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $subject = Subject::findOrFail($id);
         $subject->delete();
-
-        return response()->json([
-            "message" => "Subject deleted successfully"
-        ]);
+        return redirect()->route('subject.index')->with('success', 'Subject deleted successfully');
     }
 
     public function assignTutor(Request $request, $subjectId)

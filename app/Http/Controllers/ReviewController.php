@@ -12,10 +12,16 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $review = Review::all();
-        return response()->json([
-            "Data" => $review
-        ]);
+        $reviews = Review::all();
+        return view('review.index', compact('reviews'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('review.create');
     }
 
     /**
@@ -30,57 +36,54 @@ class ReviewController extends Controller
             'comment' => 'nullable|string|max:1000',
             'hidden' => 'boolean',
         ]);
-        $review = Review::create($validated);
-        return response()->json([
-            "message" => "Review created successfully",
-            "Data" => $review
-        ]);
-
+        Review::create($validated);
+        return redirect()->route('review.index')->with('success', 'Review created successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $review = Review::findOrFail($id);
-        return response()->json([
-            "Data" => $review
-            ]);
+        return view('review.show', compact('review'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        $review = Review::findOrFail($id);
+        return view('review.edit', compact('review'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
+        $review = Review::findOrFail($id);
         $validated = $request->validate([
             'student_id' => 'required|exists:students,id',
             'tutor_id' => 'required|exists:tutors,id',
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable|string|max:1000',
             'hidden' => 'boolean',
-            ]);
-            $review = Review::findOrFail($id);
-            $review->update($validated);
-            return response()->json([
-                "message" => "Review updated successfully",
-            ]);
-
+        ]);
+        $review->update($validated);
+        return redirect()->route('review.index')->with('success', 'Review updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $review = Review::findOrFail($id);
         $review->delete();
-        return response()->json([
-            "message"=> "Review updated successfully" ]);
+        return redirect()->route('review.index')->with('success', 'Review deleted successfully');
     }
-
-
 
     public function reviewVisibilty(string $id)
     {
@@ -91,7 +94,6 @@ class ReviewController extends Controller
             "message" => "Review visibility updated successfully",
             "Data" => $review
         ]);
-
     }
 
     public function tutorReviews($tutorId)
@@ -103,6 +105,4 @@ class ReviewController extends Controller
     {
         return Review::where('student_id', $studentId)->where('hidden', false)->get();
     }
-
-
 }

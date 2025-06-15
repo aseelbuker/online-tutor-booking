@@ -9,8 +9,13 @@ class BookingController extends Controller
 {
     public function index()
     {
-        $booking = Booking::with(['student', 'tutor', 'subject'])->get();
-        return response()->json(["Data" => $booking]);
+        $bookings = Booking::all();
+        return view('booking.index', compact('bookings'));
+    }
+
+    public function create()
+    {
+        return view('booking.create');
     }
 
     public function store(Request $request)
@@ -22,41 +27,40 @@ class BookingController extends Controller
             'scheduled_time' => 'required|date',
             'price' => 'nullable|numeric|min:0',
         ]);
-
-        $booking = Booking::create($validated);
-        return response()->json([
-            "message" => "Booking created",
-            "Data" => $booking
-        ]);
+        Booking::create($validated);
+        return redirect()->route('booking.index')->with('success', 'Booking created');
     }
 
-    public function show(string $id)
+    public function show($id)
     {
-        $booking = Booking::with(['student', 'tutor', 'subject'])->findOrFail($id);
-        return response()->json(["Data" => $booking]);
+        $booking = Booking::findOrFail($id);
+        return view('booking.show', compact('booking'));
     }
 
-    public function update(Request $request, string $id)
+    public function edit($id)
     {
+        $booking = Booking::findOrFail($id);
+        return view('booking.edit', compact('booking'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $booking = Booking::findOrFail($id);
         $validated = $request->validate([
             'status' => 'in:pending,confirmed,canceled',
             'start_time' => 'nullable|date',
             'end_time' => 'nullable|date|after:start_time',
             'price' => 'nullable|numeric|min:0',
         ]);
-
-        $booking = Booking::findOrFail($id);
         $booking->update($validated);
-
-        return response()->json(["message" => "Booking updated"]);
+        return redirect()->route('booking.index')->with('success', 'Booking updated');
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $booking = Booking::findOrFail($id);
         $booking->delete();
-
-        return response()->json(["message" => "Booking deleted"]);
+        return redirect()->route('booking.index')->with('success', 'Booking deleted');
     }
 
     // ✅ Tutor confirms a booking

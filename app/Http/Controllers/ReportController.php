@@ -12,10 +12,16 @@ class ReportController extends Controller
      */
     public function index()
     {
-        // $report = Report ::with('reporter')->get();
-        $report = Report::all();
-                return response()->json(["Data" => $report]);
+        $reports = Report::all();
+        return view('report.index', compact('reports'));
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('report.create');
     }
 
     /**
@@ -29,36 +35,50 @@ class ReportController extends Controller
             'reportable_id' => 'required|integer',
             'reason' => 'nullable|string',
         ]);
-
-        $report = Report::create($validated);
-        return response()->json([
-            "message" => "Report submitted",
-            "Data" => $report
-        ]);
+        Report::create($validated);
+        return redirect()->route('report.index')->with('success', 'Report submitted');
     }
 
-    public function show(string $id)
-    {
-        $report = Report::with('reportable')->findOrFail($id);
-        return response()->json(["Data" => $report]);
-    }
-
-    public function update(Request $request, string $id)
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
     {
         $report = Report::findOrFail($id);
-        $report->update([
-            'resolved' => $request->input('resolved', true),
-        ]);
-
-        return response()->json(["message" => "Report marked as resolved"]);
+        return view('report.show', compact('report'));
     }
 
-    public function destroy(string $id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        $report = Report::findOrFail($id);
+        return view('report.edit', compact('report'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        $report = Report::findOrFail($id);
+        $validated = $request->validate([
+            'reason' => 'nullable|string',
+            'resolved' => 'boolean',
+        ]);
+        $report->update($validated);
+        return redirect()->route('report.index')->with('success', 'Report updated');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
     {
         $report = Report::findOrFail($id);
         $report->delete();
-
-        return response()->json(["message" => "Report deleted"]);
+        return redirect()->route('report.index')->with('success', 'Report deleted');
     }
 
     // Admin resolves the report manually

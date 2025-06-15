@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\BookingSessionController;
 use App\Http\Controllers\EventPostController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
@@ -17,7 +18,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // <-----------------------------Admin Routes----------------------------->
-Route::apiResource('admin', AdminController::class);
+Route::apiResource('admins', AdminController::class);
 
 // <-----------------------------Subject Tutor Routes----------------------------->
 Route::apiResource('subject-tutors', SubjectTutorController::class);
@@ -49,7 +50,7 @@ Route::post('subjects/{subject}/assign-tutor', [SubjectController::class, 'assig
 Route::get('subjects/{subject}/tutors', [SubjectController::class, 'subjectTutors']);
 
 // <-----------------------------Session Routes----------------------------->
-Route::apiResource('sessions', SessionController::class);
+Route::apiResource('sessions', BookingSessionController::class);
 
 //<-----------------------------Review Routes----------------------------->
 Route::apiResource('reviews', ReviewController::class);
