@@ -1,0 +1,122 @@
+/* General Reset/Enhancements */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0fbff;
+    color: #333;
+}
+
+section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+/* Hero Section */
+section.bg-light.py-5:first-of-type {
+    background-color: #dff7ff;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+h1 span.text-primary {
+    color: #0088cc !important;
+}
+
+form input.form-control {
+    max-width: 400px;
+}
+
+form button {
+    background-color: #0088cc;
+    border: none;
+}
+
+form button:hover {
+    background-color: #0077b8;
+}
+
+/* Tutors Online Badge */
+.badge.bg-success {
+    background-color: #28c76f !important;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+}
+
+/* Icons in How It Works */
+section .fa-2x {
+    color: #0088cc;
+}
+
+/* Features Section */
+section.bg-light.text-center {
+    background-color: #f4fbff;
+}
+
+section.bg-light.text-center .btn-primary {
+    background-color: #0088cc;
+    border: none;
+}
+
+section.bg-light.text-center .btn-primary:hover {
+    background-color: #0077b8;
+}
+
+/* Testimonials */
+.card {
+    border: 1px solid #e1e8ef;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+}
+
+.card img {
+    object-fit: cover;
+}
+
+.card-body p {
+    font-size: 0.95rem;
+}
+
+/* Top Subjects */
+section.bg-light.py-5.text-center:last-of-type {
+    background-color: #dff7ff;
+}
+
+section.bg-light.py-5.text-center .border {
+    border-color: #dee2e6 !important;
+    padding: 0.8rem 1.2rem;
+    transition: 0.2s ease-in-out;
+}
+
+section.bg-light.py-5.text-center .border:hover {
+    background-color: #e6f7ff;
+    cursor: pointer;
+}
+
+/* Footer */
+footer.bg-dark {
+    background-color: #1e293b !important;
+}
+
+footer h5, footer h6 {
+    font-weight: 600;
+}
+
+footer p, footer li, footer a {
+    font-size: 0.85rem;
+}
+
+footer a.text-white:hover {
+    text-decoration: underline;
+}
+
+.position-relative img {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    
+}

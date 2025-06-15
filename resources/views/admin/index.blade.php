@@ -1,5 +1,5 @@
 
-@extends('layouts.app') {{-- Assuming you have a main layout --}}
+@extends('layouts.adminPnl') {{-- Assuming you have a main layout --}}
 @section('content')
 <div class="container-fluid">
     <div class="row">

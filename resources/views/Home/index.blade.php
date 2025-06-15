@@ -2,156 +2,168 @@
 
 @section('content')
 <!-- Hero Section -->
+
+
 <section class="bg-light py-5">
-  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
-    <div class="text-center text-md-start mb-4 mb-md-0">
-      <h1><strong>FIND YOUR PERFECT <span class="text-primary">TUTOR</span> TODAY</strong></h1>
-      <p class="lead">Connect with expert tutors for 1-on-1 learning in any subject. Join thousands of students achieving their goals.</p>
-      <form class="d-flex mt-3">
-        <input class="form-control me-2" type="search" placeholder="Search for tutor or subjects..." aria-label="Search">
-        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-      </form>
-      <div class="mt-4 d-flex gap-3">
-        <span><strong>1k+</strong> Expert Tutors</span>
-        <span><strong>50k+</strong> Success Stories</span>
-        <span><strong>100%</strong> Satisfaction</span>
-      </div>
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <div class="text-md-start text-center mb-4 mb-md-0">
+            <h1 class="fw-bold">Find Your Perfect <span class="text-primary">Tutor</span> Today</h1>
+            <p>Connect with expert tutors for 1-on-1 learning in any subject. Join thousands of students achieving their goals.</p>
+            <form class="d-flex mt-3">
+                <input type="text" class="form-control me-2" placeholder="Search for tutor or subjects...">
+                <button class="btn btn-primary">Search</button>
+            </form>
+            <div class="mt-3 text-muted">
+                <span>1K+ Expert Tutors | 50K+ Students | 100+ Subjects</span>
+            </div>
+        </div>
+        <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tutoring Session">
+            <span class="badge bg-success position-absolute bottom-0 start-0 m-2">500 Tutors Online</span>
+        </div>
     </div>
-    <div>
-      <img src="{{ asset('images/hero-tutoring.jpg') }}" alt="Tutoring" class="img-fluid rounded shadow">
-      <span class="badge bg-success mt-2"><i class="fas fa-circle me-1"></i> 500 Tutors Online</span>
-    </div>
-  </div>
 </section>
 
 <!-- How It Works -->
-<section class="py-5 text-center">
-  <div class="container">
-    <h4 class="mb-4">How It Works</h4>
-    <div class="row">
-      <div class="col-md-4">
-        <i class="fas fa-user-check fa-2x text-primary mb-3"></i>
-        <h5>Find the Perfect Match</h5>
-        <p>Browse tutors and services to find a tutor who specializes in your subject area.</p>
-      </div>
-      <div class="col-md-4">
-        <i class="fas fa-calendar-alt fa-2x text-primary mb-3"></i>
-        <h5>Book a Session</h5>
-        <p>Schedule a time that fits your calendar using our online platform.</p>
-      </div>
-      <div class="col-md-4">
-        <i class="fas fa-graduation-cap fa-2x text-primary mb-3"></i>
-        <h5>Learn & Succeed</h5>
-        <p>Get personalized instruction and support to help you succeed academically.</p>
-      </div>
+<section class="py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">How It Works</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <i class="fas fa-user-check fa-2x text-primary mb-3"></i>
+                <h5>Find The Perfect Match</h5>
+                <p>Browse profiles and reviews to find a tutor who specializes in your subject area.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-calendar-check fa-2x text-primary mb-3"></i>
+                <h5>Book a Session</h5>
+                <p>Schedule a time that works for you through our simple online platform.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-graduation-cap fa-2x text-primary mb-3"></i>
+                <h5>Learn & Succeed</h5>
+                <p>Get personalized support to help you achieve your academic goals.</p>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- Features -->
 <section class="bg-light py-5 text-center">
-  <div class="container">
-    <h4 class="mb-4">Experience high quality tutoring at an affordable price.</h4>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card p-4 shadow-sm">
-          <i class="fas fa-shield-alt fa-2x text-primary mb-2"></i>
-          <h5>Certified/Vetted</h5>
-          <p>All our tutors are certified and thoroughly vetted for quality assurance.</p>
+    <div class="container">
+        <h2 class="mb-4">Experience high quality tutoring at an affordable price.</h2>
+        <p class="mb-5">Education has never been so personal yet so convenient.</p>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <i class="fas fa-shield-alt fa-2x text-primary mb-3"></i>
+                <h5>Certified/Vetted</h5>
+                <p>Our tutors go through a rigorous selection process to ensure quality teaching.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-wallet fa-2x text-primary mb-3"></i>
+                <h5>Affordable</h5>
+                <p>Enjoy competitive pricing for sessions that won’t break your budget.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-lock fa-2x text-primary mb-3"></i>
+                <h5>Safe</h5>
+                <p>We take your data and session security seriously with end-to-end protection.</p>
+            </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card p-4 shadow-sm">
-          <i class="fas fa-dollar-sign fa-2x text-primary mb-2"></i>
-          <h5>Affordable</h5>
-          <p>We offer tutoring sessions at competitive prices for all budgets.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card p-4 shadow-sm">
-          <i class="fas fa-lock fa-2x text-primary mb-2"></i>
-          <h5>Safe</h5>
-          <p>We verify our tutors and secure the entire tutoring process.</p>
-        </div>
-      </div>
+        <a href="#" class="btn btn-primary mt-4">Find My Tutor</a>
     </div>
-    <a href="#" class="btn btn-primary mt-4">Find my Tutor</a>
-  </div>
 </section>
 
 <!-- Testimonials -->
 <section class="py-5">
-  <div class="container text-center">
-    <h4 class="mb-4">What Our Students Say</h4>
-    <div class="row">
-      @for($i = 0; $i < 3; $i++)
-      <div class="col-md-4 mb-3">
-        <div class="card p-4 shadow-sm h-100">
-          <img src="https://via.placeholder.com/60" class="rounded-circle mb-2 mx-auto" alt="User">
-          <h6>Vizeh Robert</h6>
-          <small>Nigeria</small>
-          <div class="mb-2 text-warning">
-            @for($j = 0; $j < 5; $j++) <i class="fas fa-star"></i> @endfor
-          </div>
-          <p>"My tutor helped me improve my calculus grade from a C to an A. The personalized approach made all the difference in my understanding."</p>
+    <div class="container text-center">
+        <h2 class="mb-4">What Our Students Say</h2>
+        <div class="row g-4">
+            @for ($i = 0; $i < 3; $i++)
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://unsplash.com/photos/grayscale-photo-of-man-c_GmwfHBDzk" class="rounded-circle me-2" width="40" height="40" alt="Student">
+                            <div class="text-start">
+                                <h6 class="mb-0">Vizeh Robert</h6>
+                                <small>Nigeria</small>
+                            </div>
+                        </div>
+                        <p>"My tutor helped me improve my calculus grade from a C to an A. The personalized approach made all the difference in my understanding of the subject."</p>
+                        <div>
+                            @for ($j = 0; $j < 5; $j++)
+                                <i class="fas fa-star text-warning"></i>
+                            @endfor
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endfor
         </div>
-      </div>
-      @endfor
     </div>
-  </div>
 </section>
 
-<!-- Subjects -->
-<section class="bg-light py-5">
-  <div class="container text-center">
-    <h4 class="mb-4">Top Subject</h4>
-    <div class="row">
-      @foreach(['Mathematics', 'Computer Science', 'Physics', 'Chemistry', 'English', 'History', 'Biology', 'Languages', 'Art & Design'] as $subject)
-      <div class="col-md-4 mb-3">
-        <div class="card shadow-sm p-3">
-          <i class="fas fa-book-open text-primary me-2"></i> {{ $subject }}
+<!-- Top Subjects -->
+<section class="bg-light py-5 text-center">
+    <div class="container">
+        <h2 class="mb-4">Top Subjects</h2>
+        <p class="mb-4">Browse through our wide range of subjects and find the perfect tutor to help you succeed</p>
+        <div class="row g-3 justify-content-center">
+            @php
+                $subjects = ['Mathematics', 'Computer Science', 'Physics', 'Chemistry', 'English', 'History', 'Biology', 'Languages', 'Art & Design'];
+            @endphp
+            @foreach ($subjects as $subject)
+                <div class="col-6 col-md-3">
+                    <div class="border p-2 rounded bg-white d-flex justify-content-between align-items-center">
+                        <span>{{ $subject }}</span>
+                        <i class="fas fa-search text-muted"></i>
+                    </div>
+                </div>
+            @endforeach
         </div>
-      </div>
-      @endforeach
     </div>
-  </div>
 </section>
 
 <!-- Footer -->
 <footer class="bg-dark text-white py-4">
-  <div class="container d-flex flex-column flex-md-row justify-content-between">
-    <div>
-      <h5>CAMa Tutor</h5>
-      <p>Our vision is to provide convenient online tutoring services to students globally.</p>
-      <div class="d-flex gap-2">
-        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
-        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-      </div>
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <div>
+            <h5>Our Vision</h5>
+            <p class="small">To provide convenient online tutoring for all students worldwide.</p>
+            <div>
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div>
+            <h6>About</h6>
+            <ul class="list-unstyled small">
+                <li><a href="#" class="text-white">How it works</a></li>
+                <li><a href="#" class="text-white">Tutor</a></li>
+                <li><a href="#" class="text-white">Business Solution</a></li>
+            </ul>
+        </div>
+        <div>
+            <h6>Community</h6>
+            <ul class="list-unstyled small">
+                <li><a href="#" class="text-white">Events</a></li>
+                <li><a href="#" class="text-white">Invite a Friend</a></li>
+                <li><a href="#" class="text-white">Support</a></li>
+            </ul>
+        </div>
+        <div>
+            <h6>Socials</h6>
+            <ul class="list-unstyled small">
+                <li><a href="#" class="text-white">Facebook</a></li>
+                <li><a href="#" class="text-white">Instagram</a></li>
+                <li><a href="#" class="text-white">Twitter</a></li>
+            </ul>
+        </div>
     </div>
-    <div>
-      <h6>About</h6>
-      <ul class="list-unstyled">
-        <li><a href="#" class="text-white">How it works</a></li>
-        <li><a href="#" class="text-white">Tutor Registration</a></li>
-        <li><a href="#" class="text-white">Business Relation</a></li>
-      </ul>
+    <div class="text-center mt-3 small">
+        &copy; 2025 CAA Tutor. All rights reserved. | <a href="#" class="text-white">Privacy Policy</a> | <a href="#" class="text-white">Terms & Conditions</a>
     </div>
-    <div>
-      <h6>Community</h6>
-      <ul class="list-unstyled">
-        <li><a href="#" class="text-white">Events</a></li>
-        <li><a href="#" class="text-white">Blog</a></li>
-        <li><a href="#" class="text-white">Invite a friend</a></li>
-      </ul>
-    </div>
-    <div>
-      <h6>Policies</h6>
-      <ul class="list-unstyled">
-        <li><a href="#" class="text-white">Privacy Policy</a></li>
-        <li><a href="#" class="text-white">Terms & Conditions</a></li>
-      </ul>
-    </div>
-  </div>
 </footer>
 @endsection
