@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-use App\Http\Controllers\TutorCrudController;
-=======
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TutorController;
@@ -11,7 +8,6 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectTutorController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\BookingSessionController;
->>>>>>> 6ce8140c7c0f5d9cdaea5123e5c16db8e48cc707
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -24,21 +20,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/{id}', [AdminController::class, 'show'])->name('show');
 });
 
-<<<<<<< HEAD
-Route::resource('Tutors', TutorCrudController::class)->names([
-    'index' => 'Tutors.index',
-    'show' => 'Tutors.show',
-    'create' => 'Tutors.create',
-    'store' => 'Tutors.store',
-    'edit' => 'Tutors.edit',
-    'update' => 'Tutors.update',
-    'destroy' => 'Tutors.destroy',
-]);
 
 
-Route::get('/', function () {
-return view('Tutor.index');
-=======
 // Student Routes
 Route::prefix('student')->name('student.')->group(function () {
     Route::get('/', [StudentController::class, 'index'])->name('index');
@@ -143,7 +126,6 @@ Route::get('/tutor/{id}', function ($id) {
 
 Route::get('/book/{tutor_id}', function ($tutor_id) {
     return view('Home.book-session');
->>>>>>> 6ce8140c7c0f5d9cdaea5123e5c16db8e48cc707
 });
 
 
