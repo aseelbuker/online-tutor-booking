@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use App\Models\Tutor;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -36,7 +35,7 @@ class Tutor extends Model
     }
     public function sessions(): HasMany
     {
-        return $this->hasMany(ClassSession::class);
+        return $this->hasMany(BookingSession::class);
     }
     public function reviews(): HasMany
     {

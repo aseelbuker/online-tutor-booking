@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Hero Section -->
-
 
 <section class="bg-light py-5">
     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
@@ -62,7 +60,7 @@
             <div class="col-md-4">
                 <i class="fas fa-wallet fa-2x text-primary mb-3"></i>
                 <h5>Affordable</h5>
-                <p>Enjoy competitive pricing for sessions that won’t break your budget.</p>
+                <p>Enjoy competitive pricing for sessions that won't break your budget.</p>
             </div>
             <div class="col-md-4">
                 <i class="fas fa-lock fa-2x text-primary mb-3"></i>
@@ -70,77 +68,32 @@
                 <p>We take your data and session security seriously with end-to-end protection.</p>
             </div>
         </div>
-      </div>
-    </div>
-    <a href="#" class="btn mt-4" style="background: var(--color-accent-3); color: #fff;">Find my Tutor</a>
-  </div>
         <a href="#" class="btn btn-primary mt-4">Find My Tutor</a>
     </div>
 </section>
 
 <!-- Testimonials -->
-<section class="py-5">
+<section class="py-5 testimonials-section" style="background: #fff;">
     <div class="container text-center">
-        <h2 class="mb-4">What Our Students Say</h2>
-        <div class="row g-4">
-            @for ($i = 0; $i < 3; $i++)
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://unsplash.com/photos/grayscale-photo-of-man-c_GmwfHBDzk" class="rounded-circle me-2" width="40" height="40" alt="Student">
-                            <div class="text-start">
-                                <h6 class="mb-0">Vizeh Robert</h6>
-                                <small>Nigeria</small>
-                            </div>
-                        </div>
-                        <p>"My tutor helped me improve my calculus grade from a C to an A. The personalized approach made all the difference in my understanding of the subject."</p>
-                        <div>
-                            @for ($j = 0; $j < 5; $j++)
-                                <i class="fas fa-star text-warning"></i>
-                            @endfor
-                        </div>
+        <h4 class="mb-4">What Our Students Say</h4>
+        <div class="row">
+            @for($i = 0; $i < 3; $i++)
+            <div class="col-md-4 mb-3">
+                <div class="card p-4 shadow-sm h-100" style="border: 1px solid var(--color-accent-2);">
+                    <img src="https://via.placeholder.com/60" class="rounded-circle mb-2 mx-auto" alt="User" style="border: 2px solid var(--color-accent-1);">
+                    <h6 style="color: var(--color-text-dark);">Vizeh Robert</h6>
+                    <small style="color: var(--color-secondary);">Nigeria</small>
+                    <div class="mb-2" style="color: var(--color-accent-3);">
+                        @for($j = 0; $j < 5; $j++) <i class="fas fa-star"></i> @endfor
                     </div>
+                    <p style="color: var(--color-text-dark);">"My tutor helped me improve my calculus grade from a C to an A. The personalized approach made all the difference in my understanding."</p>
                 </div>
             </div>
             @endfor
         </div>
     </div>
-<section class="py-5 testimonials-section" style="background: #fff;">
-  <div class="container text-center">
-    <h4 class="mb-4">What Our Students Say</h4>
-    <div class="row">
-      @for($i = 0; $i < 3; $i++)
-      <div class="col-md-4 mb-3">
-        <div class="card p-4 shadow-sm h-100" style="border: 1px solid var(--color-accent-2);">
-          <img src="https://via.placeholder.com/60" class="rounded-circle mb-2 mx-auto" alt="User" style="border: 2px solid var(--color-accent-1);">
-          <h6 style="color: var(--color-text-dark);">Vizeh Robert</h6>
-          <small style="color: var(--color-secondary);">Nigeria</small>
-          <div class="mb-2" style="color: var(--color-accent-3);">
-            @for($j = 0; $j < 5; $j++) <i class="fas fa-star"></i> @endfor
-          </div>
-          <p style="color: var(--color-text-dark);">"My tutor helped me improve my calculus grade from a C to an A. The personalized approach made all the difference in my understanding."</p>
-        </div>
-      </div>
-      @endfor
-    </div>
-  </div>
 </section>
 
-<!-- Subjects -->
-<section class="bg-light py-5 subjects-section" style="background: var(--color-bg);">
-  <div class="container text-center">
-    <h4 class="mb-4">Top Subject</h4>
-    <div class="row">
-      @foreach(['Mathematics', 'Computer Science', 'Physics', 'Chemistry', 'English', 'History', 'Biology', 'Languages', 'Art & Design'] as $subject)
-      <div class="col-md-4 mb-3">
-        <div class="card shadow-sm p-3" style="border: 1px solid var(--color-primary); background: #fff; color: var(--color-text-dark);">
-          <i class="fas fa-book-open me-2" style="color: var(--color-accent-1);"></i> {{ $subject }}
-        </div>
-      </div>
-      @endforeach
-    </div>
-  </div>
 <!-- Top Subjects -->
 <section class="bg-light py-5 text-center">
     <div class="container">
@@ -204,3 +157,4 @@
     </div>
 </footer>
 @endsection
+s
