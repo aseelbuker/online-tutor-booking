@@ -33,7 +33,7 @@ class Booking extends Model
 
     public function session()
     {
-        return $this->hasOne(ClassSession::class);
+        return $this->hasOne(BookingSession::class);
     }
     public function review()
     {

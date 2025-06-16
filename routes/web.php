@@ -78,11 +78,23 @@ Route::prefix('contactus')->name('contactus.')->group(function () {
 });
 
 // BookingSession Routes
-Route::resource('bookingsession', BookingSessionController::class);
+Route::resource('BookingSession', BookingSessionController::class);
 
 Route::get('/', function () {
     return view('Home.index');
 });
+
+Route::get('/browse', function () {
+    return view('Home.browse');
+});
+
+Route::get('/pricing', function () {
+    return view('Home.pricing');
+});
+
+// Route::get('/book-session', function () {
+//     return view('Home.book-session');
+// });
 
 Route::get('/about', function () {
     return view('Home.about');
@@ -90,22 +102,6 @@ Route::get('/about', function () {
 
 Route::get('/contact', function () {
     return view('Home.contact');
-});
-
-Route::get('/pricing', function () {
-    return view('Home.pricing');
-});
-
-Route::get('/browse', function () {
-    return view('Home.browse');
-});
-
-Route::get('/browse-search', function () {
-    return view('Home.browse-search');
-});
-
-Route::get('/browse-tutors', function () {
-    return view('Home.browse-tutors');
 });
 
 Route::get('/login', function () {
