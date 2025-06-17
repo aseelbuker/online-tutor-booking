@@ -30,6 +30,9 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->text('bio')->nullable();
             $table->string('availability')->nullable();
+            $table->text('description')->nullable();
+            $table->string('photo')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }

@@ -2,38 +2,6 @@
 
 @section('title', 'Add Tutor')
 @section('content')
-<h1>Add Tutor</h1>
-<form action="{{ route('tutor.store') }}" method="POST">
-    @csrf
-    <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
-        @error('name')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
-        @error('email')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror">
-        @error('password')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-    <button type="submit" class="btn btn-success">Create</button>
-    <a href="{{ route('tutor.index') }}" class="btn btn-secondary">Cancel</a>
-</form>
-@endsection
-
-@extends('layouts.app')
-
-@section('content')
 <div class="container">
     <h2 class="mb-4">Add New Tutor</h2>
 
@@ -48,36 +16,66 @@
         </div>
     @endif
 
-    <form action="{{ route('Tutors.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('tutor.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group mb-3">
             <label for="name">Full Name</label>
-            <input type="text" name="name" class="form-control" required placeholder="Enter tutor's full name">
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required placeholder="Enter tutor's full name">
+            @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group mb-3">
             <label for="email">Email Address</label>
-            <input type="email" name="email" class="form-control" required placeholder="Enter email">
+            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required placeholder="Enter email">
+            @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group mb-3">
-            <label for="subject">Subject Expertise</label>
-            <input type="text" name="subject" class="form-control" required placeholder="e.g. Mathematics, Science">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" required>
+            @error('password')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="subject_ids">Subject Expertise</label>
+            <select name="subject_ids[]" id="subject_ids" class="form-control @error('subject_ids') is-invalid @enderror" multiple required>
+                @foreach($subjects as $subject)
+                    <option value="{{ $subject->id }}" {{ in_array($subject->id, old('subject_ids', [])) ? 'selected' : '' }}>
+                        {{ $subject->name }}
+                    </option>
+                @endforeach
+            </select>
+            <small class="form-text text-muted">Hold Ctrl (Windows) or Command (Mac) to select multiple subjects</small>
+            @error('subject_ids')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group mb-3">
             <label for="description">Brief Bio / Description</label>
-            <textarea name="description" class="form-control" rows="4" placeholder="Tell us about the tutor..."></textarea>
+            <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="4" placeholder="Tell us about the tutor...">{{ old('description') }}</textarea>
+            @error('description')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group mb-4">
             <label for="photo">Tutor Photo (optional)</label>
-            <input type="file" name="photo" class="form-control-file">
+            <input type="file" name="photo" class="form-control-file @error('photo') is-invalid @enderror">
+            @error('photo')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <button type="submit" class="btn btn-primary">Add Tutor</button>
-        <a href="{{ route('tutors.index') }}" class="btn btn-secondary">Cancel</a>
+        <a href="{{ route('tutor.index') }}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
 @endsection

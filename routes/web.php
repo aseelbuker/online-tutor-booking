@@ -8,6 +8,8 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectTutorController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\BookingSessionController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ReportController;
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -79,6 +81,21 @@ Route::prefix('contactus')->name('contactus.')->group(function () {
 
 // BookingSession Routes
 Route::resource('BookingSession', BookingSessionController::class);
+
+// Booking Routes
+Route::prefix('booking')->name('booking.')->group(function () {
+    Route::get('/', [BookingController::class, 'index'])->name('index');
+    Route::get('/create', [BookingController::class, 'create'])->name('create');
+    Route::post('/', [BookingController::class, 'store'])->name('store');
+    Route::get('/{id}', [BookingController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [BookingController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [BookingController::class, 'update'])->name('update');
+    Route::delete('/{id}', [BookingController::class, 'destroy'])->name('destroy');
+    Route::post('/{id}/confirm', [BookingController::class, 'confirm'])->name('confirm');
+    Route::post('/{id}/cancel', [BookingController::class, 'cancel'])->name('cancel');
+});
+
+
 
 Route::get('/', function () {
     return view('Home.index');
