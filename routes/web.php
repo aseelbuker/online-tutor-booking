@@ -84,10 +84,6 @@ Route::get('/', function () {
     return view('Home.index');
 });
 
-//Route::get('/', function () {
-//    return view('Home.sign_in');
-//});
-
 Route::get('/browse', function () {
     return view('Home.browse');
 });
@@ -96,9 +92,6 @@ Route::get('/pricing', function () {
     return view('Home.pricing');
 });
 
-// Route::get('/book-session', function () {
-//     return view('Home.book-session');
-// });
 
 Route::get('/about', function () {
     return view('Home.about');
@@ -110,25 +103,25 @@ Route::get('/contact', function () {
 
 
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+///Route::get('/login', function () {
+ //   return view('auth.login');
+//});
 
-Route::get('/register', function () {
-    return view('auth.register');
-});
+// Route::get('/register', function () {
+//     return view('auth.register');
+// });
 
-Route::get('/subject/{id}', function ($id) {
-    return view('Home.subject-details');
-});
+// Route::get('/subject/{id}', function ($id) {
+//     return view('Home.subject-details');
+// });
 
-Route::get('/tutor/{id}', function ($id) {
-    return view('Home.tutor-profile');
-});
+// Route::get('/tutor/{id}', function ($id) {
+//     return view('Home.tutor-profile');
+// });
 
-Route::get('/book/{tutor_id}', function ($tutor_id) {
-    return view('Home.book-session');
-});
+// Route::get('/book/{tutor_id}', function ($tutor_id) {
+//     return view('Home.book-session');
+// });
 
 
 

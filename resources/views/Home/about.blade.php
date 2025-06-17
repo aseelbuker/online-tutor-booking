@@ -1,59 +1,70 @@
 @extends('layouts.app')
+
 @section('content')
 <!-- Hero Section -->
-<section class="hero-section" style="background: var(--color-bg); padding: 60px 0 40px 0;">
-  <div class="container text-center">
-    <span class="badge" style="background: var(--color-secondary); color: #fff;">About Call A Tutor</span>
-    <h1 class="mt-3 mb-2" style="color: var(--color-text-dark); font-weight: 700;">Revolutionizing Education Through Technology</h1>
-    <p class="lead mb-4" style="color: var(--color-text-dark);">Our mission is to make quality education accessible to everyone by connecting students with expert tutors worldwide.</p>
-    <a href="#" class="btn" style="background: var(--color-primary); color: #fff; margin-right: 10px;">Join Our Community</a>
-    <a href="#" class="btn" style="background: var(--color-accent-1); color: #fff;">Become a Tutor</a>
-  </div>
-</section>
-<!-- Impact Numbers -->
-<section class="py-5" style="background: #fff;">
-  <div class="container text-center">
-    <h3 class="mb-4" style="color: var(--color-text-dark); font-weight: 600;">Our Impact in Numbers</h3>
-    <div class="row justify-content-center">
-      <div class="col-md-3 mb-3">
-        <div class="card p-4 shadow-sm" style="border: 1px solid var(--color-primary);">
-          <h2 style="color: var(--color-primary); font-weight: 700;">10,000+</h2>
-          <p>Students Helped</p>
+<section class="bg-light py-5 text-center">
+    <div class="container">
+        <span class="text-primary fw-bold">About Call A Tutor</span>
+        <h1 class="display-5 fw-bold mt-3">Revolutionizing Education Through Technology</h1>
+        <p class="lead mt-3">Our mission is to make quality education accessible to everyone by connecting students with expert tutors worldwide.</p>
+        <div class="mt-4">
+            <a href="#" class="btn btn-primary me-2">Join Us Conveniently</a>
+            <a href="#" class="btn btn-outline-primary">Become a Tutor</a>
         </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <div class="card p-4 shadow-sm" style="border: 1px solid var(--color-secondary);">
-          <h2 style="color: var(--color-secondary); font-weight: 700;">500+</h2>
-          <p>Expert Tutors</p>
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <div class="card p-4 shadow-sm" style="border: 1px solid var(--color-accent-1);">
-          <h2 style="color: var(--color-accent-1); font-weight: 700;">95%</h2>
-          <p>Success Rate</p>
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <div class="card p-4 shadow-sm" style="border: 1px solid var(--color-accent-2);">
-          <h2 style="color: var(--color-accent-2); font-weight: 700;">25+</h2>
-          <p>Countries</p>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
-<!-- Vision Section -->
-<section class="py-5" style="background: var(--color-bg);">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <h4 class="mb-3" style="color: var(--color-text-dark); font-weight: 600;">From Vision to Reality</h4>
-        <p style="color: var(--color-text-dark);">Call A Tutor was founded in 2020 by a group of educators and tech enthusiasts who saw a gap in the educational support system. Many students were struggling to find qualified tutors who could provide personalized help when they needed it most.<br><br>Our founders believed that with the right technology, they could create a platform that would make it easy for students to connect with qualified tutors in any subject, at any time, from anywhere in the world.<br><br>Today, Call A Tutor has helped thousands of students improve their grades, build their confidence, and achieve their academic goals through personalized tutoring sessions with expert educators.</p>
-      </div>
-      <div class="col-md-6 text-center">
-        <img src="{{ asset('images/hero-tutoring.jpg') }}" alt="Tutoring" class="img-fluid rounded shadow" style="background: var(--color-desk); max-width: 90%;">
-      </div>
+
+<!-- Impact Section -->
+<section class="py-5 text-center">
+    <div class="container">
+        <h2 class="fw-bold mb-5">Our Impact in Numbers</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card shadow-sm p-4">
+                    <i class="fas fa-user-graduate fa-2x text-primary mb-3"></i>
+                    <h4>10,000+</h4>
+                    <p>Students served worldwide</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm p-4">
+                    <i class="fas fa-chalkboard-teacher fa-2x text-primary mb-3"></i>
+                    <h4>500+</h4>
+                    <p>Professional Tutors Available</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm p-4">
+                    <i class="fas fa-smile fa-2x text-primary mb-3"></i>
+                    <h4>95%</h4>
+                    <p>Student Satisfaction Rate</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm p-4">
+                    <i class="fas fa-globe fa-2x text-primary mb-3"></i>
+                    <h4>25+</h4>
+                    <p>Countries Covered</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
-@endsection
+
+<!-- About Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h3 class="fw-bold">From Vision to Reality</h3>
+                <p>Call A Tutor was founded in 2020 by a group of educators and tech enthusiasts who saw a gap in the online learning space. Our mission has always been to bridge this gap by providing a platform where personalized and flexible tutoring meets technological ease.</p>
+                <p>Our belief is that the right technology, the right people, and the right passion can transform how students learn, making education not only accessible but enjoyable.</p>
+                <p>Today, we proudly connect students with the best tutors globally, making a difference in thousands of learners’ academic journeys and personal growth stories.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3R1ZHl8ZW58MHx8MHx8fDA%3D" alt="Vision Image" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
