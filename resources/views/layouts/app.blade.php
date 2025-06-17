@@ -57,11 +57,54 @@
         </div>
     </nav>
 
+    
+
     <!-- Content from child views goes here -->
     @yield('content')
 
     <!-- Common Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @yield('scripts') <!-- Optional scripts -->
+
+    <footer class="bg-dark text-white py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <div>
+            <h5>Our Vision</h5>
+            <p class="small">To provide convenient online tutoring for all students worldwide.</p>
+            <div>
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div>
+            <h6>About</h6>
+            <ul class="list-unstyled small">
+                <li><a href="#" class="text-white">How it works</a></li>
+                <li><a href="#" class="text-white">Tutor</a></li>
+                <li><a href="#" class="text-white">Business Solution</a></li>
+            </ul>
+        </div>
+        <div>
+            <h6>Community</h6>
+            <ul class="list-unstyled small">
+                <li><a href="#" class="text-white">Events</a></li>
+                <li><a href="#" class="text-white">Invite a Friend</a></li>
+                <li><a href="#" class="text-white">Support</a></li>
+            </ul>
+        </div>
+        <div>
+            <h6>Socials</h6>
+            <ul class="list-unstyled small">
+                <li><a href="#" class="text-white">Facebook</a></li>
+                <li><a href="#" class="text-white">Instagram</a></li>
+                <li><a href="#" class="text-white">Twitter</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="text-center mt-3 small">
+        &copy; 2025 CAA Tutor. All rights reserved. | <a href="#" class="text-white">Privacy Policy</a> | <a href="#" class="text-white">Terms & Conditions</a>
+    </div>
+</footer>
 </body>
 </html>

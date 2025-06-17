@@ -84,6 +84,10 @@ Route::get('/', function () {
     return view('Home.index');
 });
 
+//Route::get('/', function () {
+//    return view('Home.sign_in');
+//});
+
 Route::get('/browse', function () {
     return view('Home.browse');
 });
@@ -103,6 +107,8 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('Home.contact');
 });
+
+
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -145,10 +151,7 @@ Route::get('/book/{tutor_id}', function ($tutor_id) {
 
 
 
-//Route::get('/', function () {
-//$tutor = Tutor::first();
-//return view('Tutor.edit', compact('tutor'));
-//});
+
 
 
 //Route::get('/', function () {

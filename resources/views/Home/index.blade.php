@@ -157,4 +157,3 @@
     </div>
 </footer>
 @endsection
-s
