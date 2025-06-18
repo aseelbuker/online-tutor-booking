@@ -15,6 +15,11 @@ class Booking extends Model
         "price"
     ];
 
+    protected $casts = [
+        'scheduled_time' => 'datetime',
+        'price' => 'decimal:2'
+    ];
+
     // Relations
     public function student() 
     {
