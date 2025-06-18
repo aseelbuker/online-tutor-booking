@@ -4,9 +4,20 @@
 <div class="container-fluid py-5 bg-light">
     <div class="container">
         <!-- Page Header -->
-        <h2 class="text-center fw-bold">Browse Subjects</h2>
-        <p class="text-center text-muted mb-5">Find expert tutors in a wide range of academic and creative subjects. Filter by academic level, category, popularity, and more to find what suits your needs.</p>
-
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold">Browse Subjects</h2>
+                <p class="text-muted">Find expert tutors in a wide range of academic and creative subjects</p>
+            </div>
+            <div class="btn-group" role="group">
+                <a href="{{ route('browse.tutors') }}" class="btn btn-outline-primary">Tutors</a>
+                <a href="{{ route('browse.subjects') }}" class="btn btn-primary active">Subjects</a>
+            </div>
+        </div>
+        <form action="{{ route('browse.subjects') }}" method="GET" class="input-group mb-4 mx-auto" style="max-width: 400px;">
+            <input type="text" name="q" class="form-control" placeholder="Search subjects...">
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+        </form>
         <div class="row">
             <!-- Filter Sidebar -->
             <div class="col-lg-3 mb-4">
@@ -14,7 +25,7 @@
                     <h5 class="fw-bold mb-3">Filters</h5>
 
                     <!-- Search -->
-                    <input type="text" class="form-control mb-3" placeholder="Search by subjects">
+                    <input type="text" class="form-control mb-3" placeholder="Search by subject">
 
                     <!-- Academic Level -->
                     <h6 class="fw-semibold">Academic Level</h6>
@@ -43,22 +54,6 @@
                         </div>
                     @endforeach
 
-                    <!-- Rating Range -->
-                    <h6 class="fw-semibold mt-3">Rating Range</h6>
-                    @foreach(['4.5+', '4.0+'] as $rating)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="rate-{{ $rating }}">
-                            <label class="form-check-label" for="rate-{{ $rating }}">{{ $rating }}</label>
-                        </div>
-                    @endforeach
-
-                    <!-- Tutor Availability -->
-                    <h6 class="fw-semibold mt-3">Tutor Availability</h6>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="availability">
-                        <label class="form-check-label" for="availability">Available Now</label>
-                    </div>
-
                     <!-- Buttons -->
                     <button class="btn btn-primary w-100 mt-3 mb-2">Apply Filters</button>
                     <button class="btn btn-outline-secondary w-100">Clear All</button>
@@ -82,12 +77,54 @@
                 <div class="row g-4">
                     @php
                         $subjects = [
-                            ['name' => 'Mathematics', 'badge' => 'Most Popular', 'majors' => ['Algebra', 'Geometry'], 'rating' => '4.8', 'count' => 1250, 'tutors' => 32],
-                            ['name' => 'Physics', 'badge' => 'High Demand', 'majors' => ['Mechanics', 'Optics'], 'rating' => '4.7', 'count' => 1130, 'tutors' => 34],
-                            ['name' => 'Chemistry', 'badge' => null, 'majors' => ['Organic', 'Inorganic'], 'rating' => '4.6', 'count' => 980, 'tutors' => 27],
-                            ['name' => 'Computer Science', 'badge' => 'Trending', 'majors' => ['Programming', 'AI'], 'rating' => '4.9', 'count' => 1125, 'tutors' => 28],
-                            ['name' => 'Biology', 'badge' => 'High Demand', 'majors' => ['Genetics', 'Anatomy'], 'rating' => '4.7', 'count' => 1150, 'tutors' => 25],
-                            ['name' => 'Foreign Languages', 'badge' => null, 'majors' => ['Spanish', 'French'], 'rating' => '4.3', 'count' => 910, 'tutors' => 36],
+                            [
+                                'name' => 'Mathematics',
+                                'badge' => 'Most Popular',
+                                'majors' => ['Algebra', 'Geometry', 'Calculus'],
+                                'rating' => '4.8',
+                                'count' => 1250,
+                                'tutors' => 32
+                            ],
+                            [
+                                'name' => 'Physics',
+                                'badge' => 'High Demand',
+                                'majors' => ['Mechanics', 'Optics', 'Thermodynamics'],
+                                'rating' => '4.7',
+                                'count' => 1130,
+                                'tutors' => 34
+                            ],
+                            [
+                                'name' => 'Chemistry',
+                                'badge' => null,
+                                'majors' => ['Organic', 'Inorganic', 'Physical'],
+                                'rating' => '4.6',
+                                'count' => 980,
+                                'tutors' => 27
+                            ],
+                            [
+                                'name' => 'Computer Science',
+                                'badge' => 'Trending',
+                                'majors' => ['Programming', 'AI', 'Data Structures'],
+                                'rating' => '4.9',
+                                'count' => 1125,
+                                'tutors' => 28
+                            ],
+                            [
+                                'name' => 'Biology',
+                                'badge' => 'High Demand',
+                                'majors' => ['Genetics', 'Anatomy', 'Ecology'],
+                                'rating' => '4.7',
+                                'count' => 1150,
+                                'tutors' => 25
+                            ],
+                            [
+                                'name' => 'Foreign Languages',
+                                'badge' => null,
+                                'majors' => ['Spanish', 'French', 'German'],
+                                'rating' => '4.3',
+                                'count' => 910,
+                                'tutors' => 36
+                            ]
                         ];
                     @endphp
 
@@ -138,4 +175,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection 

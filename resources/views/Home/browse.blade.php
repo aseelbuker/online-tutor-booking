@@ -6,7 +6,7 @@
         <h2 class="fw-bold">Browse Subjects</h2>
         <p class="text-muted">Find expert tutors in a wide range of academic subjects</p>
 
-        <form action="{{ route('browse.search') }}" method="GET" class="input-group mx-auto" style="max-width: 400px;">
+        <form action="{{ route('browse.tutors') }}" method="GET" class="input-group mx-auto" style="max-width: 400px;">
             <input type="text" name="q" class="form-control" placeholder="Search subjects...">
             <button type="submit" class="btn btn-outline-primary">Search</button>
         </form>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-end">
                         <small class="text-secondary">{{ $subject[2] }} tutors available</small>
-                        <a href="#" class="btn btn-link text-primary p-0">View Tutors</a>
+                        <a href="{{ route('browse.subjects') }}" class="btn btn-link text-primary p-0">View Tutors</a>
                     </div>
                 </div>
             </div>
