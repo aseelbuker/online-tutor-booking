@@ -8,6 +8,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectTutorController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\BookingSessionController;
+use App\Http\Controllers\Auth\registerController;
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -77,8 +78,18 @@ Route::prefix('contactus')->name('contactus.')->group(function () {
     Route::get('/{id}', [ContactUsController::class, 'show'])->name('show');
 });
 
+Route::get('login/{provider}', [SocialController::class, 'redirect'])->name('social.login');
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::get('register', [registerController::class, 'showRegistrationForm'])->name('register');
+
 // BookingSession Routes
 Route::resource('BookingSession', BookingSessionController::class);
+
+
+Route::get('/register', [registerController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [registerController::class, 'register']);
+
+
 
 Route::get('/', function () {
     return view('Home.index');
@@ -103,9 +114,9 @@ Route::get('/contact', function () {
 
 
 
-///Route::get('/login', function () {
- //   return view('auth.login');
-//});
+// Route::get('/login', function () {
+//    return view('auth.login');
+// });
 
 // Route::get('/register', function () {
 //     return view('auth.register');
