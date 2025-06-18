@@ -17,7 +17,6 @@
             <div class="mb-3">
                 <label for="password" class="form-label d-flex justify-content-between">
                     <span>Password</span>
-                    <a href="{{ route('password.request') }}" class="small text-decoration-none">Forgot password?</a>
                 </label>
                 <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
             </div>
@@ -30,10 +29,8 @@
             </div>
             <div class="text-center text-muted mb-3">Or continue with</div>
             <div class="d-flex justify-content-between">
-                <a href="{{ route('social.login', 'google') }}" class="btn btn-outline-secondary w-100 me-2">
                     <i class="fab fa-google me-2"></i> Google
                 </a>
-                <a href="{{ route('social.login', 'facebook') }}" class="btn btn-outline-secondary w-100">
                     <i class="fab fa-facebook-f me-2"></i> Facebook
                 </a>
             </div>
