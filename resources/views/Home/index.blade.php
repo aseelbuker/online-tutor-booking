@@ -7,8 +7,8 @@
         <div class="text-md-start text-center mb-4 mb-md-0">
             <h1 class="fw-bold">Find Your Perfect <span class="text-primary">Tutor</span> Today</h1>
             <p>Connect with expert tutors for 1-on-1 learning in any subject. Join thousands of students achieving their goals.</p>
-            <form class="d-flex mt-3">
-                <input type="text" class="form-control me-2" placeholder="Search for tutor or subjects...">
+            <form class="d-flex mt-3" action="{{ route('browse.subjects') }}" method="GET">
+                <input type="text" class="form-control me-2" placeholder="Search for tutor or subjects..." name="q">
                 <button class="btn btn-primary">Search</button>
             </form>
             <div class="mt-3 text-muted">
