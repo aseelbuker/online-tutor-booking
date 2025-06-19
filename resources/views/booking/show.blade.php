@@ -94,25 +94,6 @@
                 </div>
             @endif
 
-            @if($booking->review)
-                <div class="mt-4">
-                    <h4 class="mb-3">Review</h4>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-2">
-                                <div class="me-2">
-                                    @for($i = 1; $i <= 5; $i++)
-                                        <i class="fas fa-star {{ $i <= $booking->review->rating ? 'text-warning' : 'text-muted' }}"></i>
-                                    @endfor
-                                </div>
-                                <span class="text-muted">{{ $booking->review->created_at->format('M d, Y') }}</span>
-                            </div>
-                            <p class="mb-0">{{ $booking->review->comment }}</p>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
             <div class="mt-4">
                 <form action="{{ route('booking.destroy', $booking->id) }}" method="POST" class="d-inline">
                     @csrf

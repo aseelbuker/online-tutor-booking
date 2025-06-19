@@ -59,4 +59,16 @@ class AdminController extends Controller
         $admin->delete();
         return redirect()->route('admin.index')->with('success', 'Admin deleted successfully');
     }
+
+    public function dashboard()
+    {
+        // Example stats, replace with real queries as needed
+        $totalBookings = \App\Models\Booking::count();
+        $totalRevenue = \App\Models\Booking::sum('price');
+        $newTutors = \App\Models\Tutor::whereMonth('created_at', now()->month)->count();
+        $reportedReviews = \App\Models\Review::where('hidden', false)->count();
+        $notificationsSent = 1284; // Placeholder, replace with real logic
+
+        return view('admin.dashboard', compact('totalBookings', 'totalRevenue', 'newTutors', 'reportedReviews', 'notificationsSent'));
+    }
 }

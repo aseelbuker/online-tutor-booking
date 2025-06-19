@@ -12,17 +12,23 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ReportController;
 
 // Admin Routes
+Route::get('admin/login', function() { return view('adminDashboard.login'); })->name('admin.login');
+
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('index');
-    Route::get('/create', [AdminController::class, 'create'])->name('create');
-    Route::post('/', [AdminController::class, 'store'])->name('store');
-    Route::get('/{id}/edit', [AdminController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [AdminController::class, 'update'])->name('update');
-    Route::delete('/{id}', [AdminController::class, 'destroy'])->name('destroy');
-    Route::get('/{id}', [AdminController::class, 'show'])->name('show');
+    Route::get('dashboard', function() { return view('adminDashboard.dashboard'); })->name('dashboard');
+    Route::get('tutors', function() { return view('adminDashboard.tutors'); })->name('tutors');
+    Route::get('subjects', function() { return view('adminDashboard.subjects'); })->name('subjects');
+    Route::get('students', function() { return view('adminDashboard.students'); })->name('students');
+    Route::get('bookings', function() { return view('adminDashboard.bookings'); })->name('bookings');
+    Route::get('notifications', function() { return view('adminDashboard.notifications'); })->name('notifications');
+    Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('index');
+    Route::get('create', [App\Http\Controllers\AdminController::class, 'create'])->name('create');
+    Route::post('/', [App\Http\Controllers\AdminController::class, 'store'])->name('store');
+    Route::get('{id}', [App\Http\Controllers\AdminController::class, 'show'])->name('show');
+    Route::get('{id}/edit', [App\Http\Controllers\AdminController::class, 'edit'])->name('edit');
+    Route::put('{id}', [App\Http\Controllers\AdminController::class, 'update'])->name('update');
+    Route::delete('{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('destroy');
 });
-
-
 
 // Student Routes
 Route::prefix('student')->name('student.')->group(function () {
