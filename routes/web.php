@@ -9,17 +9,41 @@ use App\Http\Controllers\SubjectTutorController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\BookingSessionController;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\ReportController;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\BrowseController;
 
 // Admin Routes
 Route::get('admin/login', function() { return view('adminDashboard.login'); })->name('admin.login');
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('dashboard', function() { return view('adminDashboard.dashboard'); })->name('dashboard');
-    Route::get('tutors', function() { return view('adminDashboard.tutors'); })->name('tutors');
-    Route::get('subjects', function() { return view('adminDashboard.subjects'); })->name('subjects');
-    Route::get('students', function() { return view('adminDashboard.students'); })->name('students');
-    Route::get('bookings', function() { return view('adminDashboard.bookings'); })->name('bookings');
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('tutors', [AdminController::class, 'tutors'])->name('tutors');
+    Route::get('tutors/create', [AdminController::class, 'createTutor'])->name('tutors.create');
+    Route::post('tutors', [AdminController::class, 'storeTutor'])->name('tutors.store');
+    Route::get('tutors/{tutor}/edit', [AdminController::class, 'editTutor'])->name('tutors.edit');
+    Route::put('tutors/{tutor}', [AdminController::class, 'updateTutor'])->name('tutors.update');
+    Route::delete('tutors/{tutor}', [AdminController::class, 'destroyTutor'])->name('tutors.destroy');
+
+    Route::get('subjects', [AdminController::class, 'subjects'])->name('subjects');
+    Route::get('subjects/create', [AdminController::class, 'createSubject'])->name('subjects.create');
+    Route::post('subjects', [AdminController::class, 'storeSubject'])->name('subjects.store');
+    Route::get('subjects/{subject}/edit', [AdminController::class, 'editSubject'])->name('subjects.edit');
+    Route::put('subjects/{subject}', [AdminController::class, 'updateSubject'])->name('subjects.update');
+    Route::delete('subjects/{subject}', [AdminController::class, 'destroySubject'])->name('subjects.destroy');
+
+    Route::get('students', [AdminController::class, 'students'])->name('students');
+    Route::get('students/create', [AdminController::class, 'createStudent'])->name('students.create');
+    Route::post('students', [AdminController::class, 'storeStudent'])->name('students.store');
+    Route::get('students/{student}/edit', [AdminController::class, 'editStudent'])->name('students.edit');
+    Route::put('students/{student}', [AdminController::class, 'updateStudent'])->name('students.update');
+    Route::delete('students/{student}', [AdminController::class, 'destroyStudent'])->name('students.destroy');
+
+    Route::get('bookings', [AdminController::class, 'bookings'])->name('bookings');
+    Route::get('bookings/{booking}/edit', [AdminController::class, 'editBooking'])->name('bookings.edit');
+    Route::put('bookings/{booking}', [AdminController::class, 'updateBooking'])->name('bookings.update');
+    Route::delete('bookings/{booking}', [AdminController::class, 'destroyBooking'])->name('bookings.destroy');
+
     Route::get('notifications', function() { return view('adminDashboard.notifications'); })->name('notifications');
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('index');
     Route::get('create', [App\Http\Controllers\AdminController::class, 'create'])->name('create');
@@ -102,14 +126,10 @@ Route::prefix('booking')->name('booking.')->group(function () {
 });
 
 // Browse Routes
-
+Route::get('/browse', [BrowseController::class, 'index'])->name('browse');
 
 Route::get('/', function () {
     return view('Home.index');
-});
-
-Route::get('/browse', function () {
-    return view('Home.browse');
 });
 
 Route::get('/pricing', function () {
@@ -125,13 +145,8 @@ Route::get('/contact', function () {
     return view('Home.contact');
 });
 
-Route::get('/browse/tutors', function () {
-    return view('Home.browse-tutors');
-})->name('browse.tutors');
-
-Route::get('/browse/subjects', function () {
-    return view('Home.browse-subjects');
-})->name('browse.subjects');
+Route::get('/browse/tutors', [BrowseController::class, 'tutors'])->name('browse.tutors');
+Route::get('/browse/subjects', [BrowseController::class, 'subjects'])->name('browse.subjects');
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -140,3 +155,9 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
+
+// Route to manually trigger the session status update command (for testing)
+Route::get('/admin/run-session-status-update', function () {
+    Artisan::call('app:update-booking-session-status');
+    return 'Booking session statuses updated.';
+});

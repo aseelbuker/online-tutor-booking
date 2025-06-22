@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="mb-2"><i class="fas fa-calendar-alt fa-2x text-primary"></i></div>
                     <h6 class="card-title">Total Bookings</h6>
-                    <div class="display-6 fw-bold">2,847</div>
+                    <div class="display-6 fw-bold">{{ number_format($totalBookings) }}</div>
                     <div class="text-success small">+12% this month</div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <div class="mb-2"><i class="fas fa-dollar-sign fa-2x text-info"></i></div>
                     <h6 class="card-title">Total Revenue</h6>
-                    <div class="display-6 fw-bold">$24,680</div>
+                    <div class="display-6 fw-bold">${{ number_format($totalRevenue, 2) }}</div>
                     <div class="text-success small">+8% this month</div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <div class="mb-2"><i class="fas fa-user-plus fa-2x text-info"></i></div>
                     <h6 class="card-title">New Tutors</h6>
-                    <div class="display-6 fw-bold">47</div>
+                    <div class="display-6 fw-bold">{{ number_format($newTutors) }}</div>
                     <div class="text-muted small">This month</div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <div class="card-body">
                     <div class="mb-2"><i class="fas fa-exclamation-triangle fa-2x text-warning"></i></div>
                     <h6 class="card-title">Reported Reviews</h6>
-                    <div class="display-6 fw-bold">23</div>
+                    <div class="display-6 fw-bold">{{ ($reportedReviews) }}</div>
                     <div class="text-warning small">Needs attention</div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 <div class="card-body">
                     <div class="mb-2"><i class="fas fa-bell fa-2x text-info"></i></div>
                     <h6 class="card-title">Notifications Sent</h6>
-                    <div class="display-6 fw-bold">1,284</div>
+                    <div class="display-6 fw-bold">{{ ($notificationsSent) }}</div>
                     <div class="text-muted small">This month</div>
                 </div>
             </div>
@@ -116,49 +116,82 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($recentTutorApplications as $tutor)
                             <tr>
-                                <td class="fw-bold text-primary">Dr. Emily Johnson</td>
-                                <td>emily.johnson@email.com</td>
-                                <td>PhD Mathematics</td>
-                                <td>5 years</td>
-                                <td><span class="badge bg-warning">pending</span></td>
-                                <td>2024-05-25</td>
+                                <td class="fw-bold text-primary">{{ $tutor->name }}</td>
+                                <td>{{ $tutor->email }}</td>
+                                <td>{{ $tutor->qualification }}</td>
+                                <td></td>
+                                <td>
+                                    <span class="badge 
+                                        @if($tutor->background_check_status == 'pending') bg-warning
+                                        @elseif($tutor->background_check_status == 'approved') bg-success
+                                        @else bg-danger @endif">
+                                        {{ $tutor->background_check_status }}
+                                    </span>
+                                </td>
+                                <td>{{ $tutor->created_at->format('Y-m-d') }}</td>
                                 <td>
                                     <a href="#" class="text-info me-2"><i class="fas fa-eye"></i></a>
                                     <a href="#" class="text-success me-2"><i class="fas fa-check"></i></a>
                                     <a href="#" class="text-danger"><i class="fas fa-times"></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="fw-bold text-primary">Mark Thompson</td>
-                                <td>mark.thompson@email.com</td>
-                                <td>MSc Physics</td>
-                                <td>3 years</td>
-                                <td><span class="badge bg-success">approved</span></td>
-                                <td>2024-05-20</td>
-                                <td>
-                                    <a href="#" class="text-info me-2"><i class="fas fa-eye"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold text-primary">Sarah Wilson</td>
-                                <td>sarah.wilson@email.com</td>
-                                <td>BA English Literature</td>
-                                <td>2 years</td>
-                                <td><span class="badge bg-danger">rejected</span></td>
-                                <td>2024-05-22</td>
-                                <td>
-                                    <a href="#" class="text-info me-2"><i class="fas fa-eye"></i></a>
-                                </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
                 <div class="tab-pane fade" id="recent-bookings" role="tabpanel">
-                    <div class="text-center text-muted py-5">Recent Bookings content goes here.</div>
+                    <h5 class="mb-3">Recent Bookings</h5>
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Tutor</th>
+                                <th>Subject</th>
+                                <th>Scheduled Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($recentBookings as $booking)
+                            <tr>
+                                <td>{{ $booking->student->name ?? '-' }}</td>
+                                <td>{{ $booking->tutor->name ?? '-' }}</td>
+                                <td>{{ $booking->subject->name ?? '-' }}</td>
+                                <td>{{ $booking->scheduled_time->format('Y-m-d H:i') }}</td>
+                                <td>{{ ucfirst($booking->status) }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
                 <div class="tab-pane fade" id="reported-chats" role="tabpanel">
-                    <div class="text-center text-muted py-5">Reported Chats content goes here.</div>
+                    <h5 class="mb-3">Reported Chats</h5>
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Reporter</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($recentReports as $report)
+                            <tr>
+                                <td>{{ $report->reporter->name ?? '-' }}</td>
+                                <td>{{ $report->reason }}</td>
+                                <td>
+                                    <span class="badge {{ $report->resolved ? 'bg-success' : 'bg-warning' }}">
+                                        {{ $report->resolved ? 'Resolved' : 'Pending' }}
+                                    </span>
+                                </td>
+                                <td>{{ $report->created_at->format('Y-m-d H:i') }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

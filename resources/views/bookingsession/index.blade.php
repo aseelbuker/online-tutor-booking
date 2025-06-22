@@ -3,7 +3,7 @@
 @section('title', 'Booking Sessions')
 @section('content')
 <h1>Booking Sessions</h1>
-<a href="{{ route('bookingsession.create') }}" class="btn btn-primary mb-3">Add Booking Session</a>
+<a href="{{ route('BookingSession.create') }}" class="btn btn-primary mb-3">Add Booking Session</a>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -28,8 +28,16 @@
             <td>{{ $session->status }}</td>
             <td>{{ $session->notes }}</td>
             <td>
-                <a href="{{ route('bookingsession.edit', $session->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                <form action="{{ route('bookingsession.destroy', $session->id) }}" method="POST" style="display:inline-block;">
+                @php
+                    $now = \Carbon\Carbon::now();
+                    $start = \Carbon\Carbon::parse($session->start_time);
+                    $end = \Carbon\Carbon::parse($session->end_time);
+                @endphp
+                @if($session->status == 'confirmed' && $now->between($start, $end))
+                    <a href="{{ $session->meeting_link }}" class="btn btn-sm btn-success" target="_blank">Join</a>
+                @endif
+                <a href="{{ route('BookingSession.edit', $session->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                <form action="{{ route('BookingSession.destroy', $session->id) }}" method="POST" style="display:inline-block;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>

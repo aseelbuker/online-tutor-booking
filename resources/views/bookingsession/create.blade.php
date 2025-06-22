@@ -3,7 +3,7 @@
 @section('title', 'Add Booking Session')
 @section('content')
 <h1>Add Booking Session</h1>
-<form action="{{ route('bookingsession.store') }}" method="POST">
+<form action="{{ route('BookingSession.store') }}" method="POST">
     @csrf
     <div class="mb-3">
         <label for="booking_id" class="form-label">Booking ID</label>
@@ -53,6 +53,6 @@
         @enderror
     </div>
     <button type="submit" class="btn btn-success">Create</button>
-    <a href="{{ route('bookingsession.index') }}" class="btn btn-secondary">Cancel</a>
+    <a href="{{ route('BookingSession.index') }}" class="btn btn-secondary">Cancel</a>
 </form>
 @endsection

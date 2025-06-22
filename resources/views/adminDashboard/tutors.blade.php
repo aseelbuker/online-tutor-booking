@@ -1,13 +1,14 @@
 @extends('layouts.adminPnl')
 @section('title', 'Tutor Management')
 @section('content')
-<div class="container py-4">
+<div class="container-fluid py-4">
     <h1 class="fw-bold mb-2 text-primary">Tutor Management</h1>
     <p class="mb-4 text-muted">Manage tutors, approve applications, and monitor performance</p>
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4 class="fw-bold mb-0">All Tutors</h4>
+                <a href="{{ route('admin.tutors.create') }}" class="btn btn-primary btn-sm">Add Tutor</a>
                 <form class="d-flex" style="max-width: 320px;">
                     <input class="form-control form-control-sm me-2" type="search" placeholder="Search tutors...">
                     <button class="btn btn-outline-secondary btn-sm" type="button"><i class="fas fa-filter"></i> Filter</button>
@@ -26,51 +27,36 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($tutors as $tutor)
                     <tr>
-                        <td class="fw-bold text-primary">Dr. Emily Johnson</td>
-                        <td>emily@example.com</td>
+                        <td class="fw-bold text-primary">{{ $tutor->name }}</td>
+                        <td>{{ $tutor->email }}</td>
                         <td>
-                            <span class="badge bg-primary">Mathematics</span>
-                            <span class="badge bg-secondary">Physics</span>
+                            @foreach($tutor->subjects as $subject)
+                                <span class="badge bg-primary">{{ $subject->name }}</span>
+                            @endforeach
                         </td>
-                        <td><span class="badge bg-success">active</span></td>
-                        <td>4.8/5</td>
-                        <td>156</td>
                         <td>
-                            <a href="#" class="text-info me-2"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="text-danger"><i class="fas fa-ban"></i></a>
+                            @if($tutor->status === 'active')
+                                <span class="badge bg-success">Active</span>
+                            @elseif($tutor->status === 'pending')
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            @else
+                                <span class="badge bg-danger">Suspended</span>
+                            @endif
+                        </td>
+                        <td>{{ $tutor->rating }}/5</td>
+                        <td>{{ $tutor->sessions->count() }}</td>
+                        <td>
+                            <a href="{{ route('admin.tutors.edit', $tutor->id) }}" class="text-info me-2"><i class="fas fa-edit"></i></a>
+                            <form action="{{ route('admin.tutors.destroy', $tutor->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link text-danger p-0" onclick="return confirm('Are you sure you want to delete this tutor?')"><i class="fas fa-trash"></i></button>
+                            </form>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="fw-bold text-primary">Mark Thompson</td>
-                        <td>mark@example.com</td>
-                        <td>
-                            <span class="badge bg-primary">Chemistry</span>
-                            <span class="badge bg-secondary">Biology</span>
-                        </td>
-                        <td><span class="badge bg-warning text-dark">pending</span></td>
-                        <td>4.6/5</td>
-                        <td>89</td>
-                        <td>
-                            <a href="#" class="text-info me-2"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="text-success me-2"><i class="fas fa-check"></i></a>
-                            <a href="#" class="text-danger"><i class="fas fa-times"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bold text-primary">Sarah Wilson</td>
-                        <td>sarah@example.com</td>
-                        <td>
-                            <span class="badge bg-primary">English</span>
-                            <span class="badge bg-secondary">Literature</span>
-                        </td>
-                        <td><span class="badge bg-danger">suspended</span></td>
-                        <td>4.2/5</td>
-                        <td>234</td>
-                        <td>
-                            <a href="#" class="text-info me-2"><i class="fas fa-eye"></i></a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

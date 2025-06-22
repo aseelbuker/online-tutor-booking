@@ -82,70 +82,28 @@
                 </div>
 
                 <div class="row g-4">
-                    @php
-                        $tutors = [
-                            [
-                                'name' => 'Michael Johnson',
-                                'subjects' => ['Mathematics', 'Physics'],
-                                'rating' => '4.8',
-                                'reviews' => 124,
-                                'description' => 'Experienced mathematics tutor with 8+ years teaching at university level. Specializing in calculus and algebra with a patient approach to help students build confidence.',
-                                'languages' => ['English', 'Spanish'],
-                                'availability' => 'Evenings',
-                                'traits' => ['Patient', 'Verified'],
-                                'price' => '$35/hr'
-                            ],
-                            [
-                                'name' => 'Sarah Williams',
-                                'subjects' => ['Chemistry', 'Biology'],
-                                'rating' => '4.9',
-                                'reviews' => 98,
-                                'description' => 'PhD in Chemistry with 5 years of teaching experience. Passionate about making complex scientific concepts easy to understand.',
-                                'languages' => ['English', 'French'],
-                                'availability' => 'Weekends',
-                                'traits' => ['Experienced', 'Verified'],
-                                'price' => '$40/hr'
-                            ],
-                            [
-                                'name' => 'David Chen',
-                                'subjects' => ['Computer Science', 'Mathematics'],
-                                'rating' => '4.7',
-                                'reviews' => 156,
-                                'description' => 'Software engineer with 10+ years of experience. Expert in programming languages and algorithms.',
-                                'languages' => ['English', 'Chinese'],
-                                'availability' => 'Flexible',
-                                'traits' => ['Expert', 'Verified'],
-                                'price' => '$45/hr'
-                            ]
-                        ];
-                    @endphp
-
                     @foreach ($tutors as $tutor)
                         <div class="col-md-6 col-lg-4">
                             <div class="card h-100 shadow-sm">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-3">
-                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle me-3" width="48" height="48" alt="Tutor">
+                                        <img src="{{ $tutor->photo }}" class="rounded-circle me-3" width="48" height="48" alt="Tutor">
                                         <div>
-                                            <h5 class="card-title mb-0">{{ $tutor['name'] }}</h5>
-                                            <p class="text-muted small mb-0">{{ implode(', ', $tutor['subjects']) }}</p>
+                                            <h5 class="card-title mb-0">{{ $tutor->name }}</h5>
+                                            <p class="text-muted small mb-0">
+                                                {{ $tutor->subjects->pluck('name')->implode(', ') }}
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="mb-2">
-                                        <i class="fas fa-star text-warning"></i> {{ $tutor['rating'] }} ({{ $tutor['reviews'] }} reviews)
+                                        <i class="fas fa-star text-warning"></i> {{ $tutor->rating ?? 'N/A' }}
                                     </div>
-                                    <p class="card-text small text-muted">{{ $tutor['description'] }}</p>
+                                    <p class="card-text small text-muted">{{ $tutor->description }}</p>
                                     <div class="mb-2">
-                                        @foreach($tutor['languages'] as $language)
-                                            <span class="badge bg-primary me-1">{{ $language }}</span>
-                                        @endforeach
-                                        <span class="badge bg-secondary me-1">{{ $tutor['availability'] }}</span>
-                                        @foreach($tutor['traits'] as $trait)
-                                            <span class="badge bg-info">{{ $trait }}</span>
-                                        @endforeach
+                                        <span class="badge bg-secondary me-1">{{ $tutor->availability ?? 'N/A' }}</span>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <h5 class="mb-0">{{ $tutor['price'] }}</h5>
+                                        <h5 class="mb-0">{{ $tutor->hourly_rate ? '$' . $tutor->hourly_rate . '/hr' : '' }}</h5>
                                         <a href="#" class="btn btn-outline-primary btn-sm">Book Now</a>
                                     </div>
                                 </div>

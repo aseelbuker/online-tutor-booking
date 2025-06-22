@@ -75,81 +75,19 @@
                 </div>
 
                 <div class="row g-4">
-                    @php
-                        $subjects = [
-                            [
-                                'name' => 'Mathematics',
-                                'badge' => 'Most Popular',
-                                'majors' => ['Algebra', 'Geometry', 'Calculus'],
-                                'rating' => '4.8',
-                                'count' => 1250,
-                                'tutors' => 32
-                            ],
-                            [
-                                'name' => 'Physics',
-                                'badge' => 'High Demand',
-                                'majors' => ['Mechanics', 'Optics', 'Thermodynamics'],
-                                'rating' => '4.7',
-                                'count' => 1130,
-                                'tutors' => 34
-                            ],
-                            [
-                                'name' => 'Chemistry',
-                                'badge' => null,
-                                'majors' => ['Organic', 'Inorganic', 'Physical'],
-                                'rating' => '4.6',
-                                'count' => 980,
-                                'tutors' => 27
-                            ],
-                            [
-                                'name' => 'Computer Science',
-                                'badge' => 'Trending',
-                                'majors' => ['Programming', 'AI', 'Data Structures'],
-                                'rating' => '4.9',
-                                'count' => 1125,
-                                'tutors' => 28
-                            ],
-                            [
-                                'name' => 'Biology',
-                                'badge' => 'High Demand',
-                                'majors' => ['Genetics', 'Anatomy', 'Ecology'],
-                                'rating' => '4.7',
-                                'count' => 1150,
-                                'tutors' => 25
-                            ],
-                            [
-                                'name' => 'Foreign Languages',
-                                'badge' => null,
-                                'majors' => ['Spanish', 'French', 'German'],
-                                'rating' => '4.3',
-                                'count' => 910,
-                                'tutors' => 36
-                            ]
-                        ];
-                    @endphp
-
                     @foreach ($subjects as $subject)
                         <div class="col-md-6 col-lg-4">
                             <div class="card h-100 shadow-sm">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between mb-2">
-                                        <h5 class="card-title">{{ $subject['name'] }}</h5>
-                                        @if($subject['badge'])
-                                            <span class="badge bg-success text-white">{{ $subject['badge'] }}</span>
-                                        @endif
+                                        <h5 class="card-title">{{ $subject->icon ?? '📘' }} {{ $subject->name }}</h5>
+                                        {{-- You can add a badge here if you want --}}
                                     </div>
-                                    <p class="card-text text-muted small">Learn {{ implode(', ', $subject['majors']) }} with expert tutors.</p>
-                                    <div class="mb-2 small">
-                                        <strong>Majors:</strong>
-                                        @foreach($subject['majors'] as $major)
-                                            <span class="badge bg-light text-dark">{{ $major }}</span>
-                                        @endforeach
-                                    </div>
+                                    <p class="card-text text-muted small">Level: {{ $subject->level ?? 'N/A' }}</p>
                                     <div class="d-flex justify-content-between align-items-center small">
                                         <div>
-                                            <i class="fas fa-star text-warning"></i> {{ $subject['rating'] }} ({{ $subject['count'] }})
+                                            <i class="fas fa-user text-warning"></i> {{ $subject->tutors_count }} Tutors
                                         </div>
-                                        <div class="text-muted">{{ $subject['tutors'] }} Tutors Available</div>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-transparent text-end border-0">

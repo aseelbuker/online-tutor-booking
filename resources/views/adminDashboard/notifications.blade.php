@@ -1,7 +1,7 @@
 @extends('layouts.adminPnl')
 @section('title', 'Notification Management')
 @section('content')
-<div class="container py-4">
+<div class="container-fluid py-4">
     <h1 class="fw-bold mb-2 text-primary">Notification Management</h1>
     <p class="mb-4 text-muted">Send announcements and manage platform notifications</p>
     <div class="card">

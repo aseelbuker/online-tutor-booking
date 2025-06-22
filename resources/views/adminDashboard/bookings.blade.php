@@ -1,7 +1,7 @@
 @extends('layouts.adminPnl')
 @section('title', 'Booking Management')
 @section('content')
-<div class="container py-4">
+<div class="container-fluid py-4">
     <h1 class="fw-bold mb-2 text-primary">Booking Management</h1>
     <p class="mb-4 text-muted">View and monitor all platform bookings</p>
     <div class="card">
@@ -27,36 +27,25 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($bookings as $booking)
                     <tr>
-                        <td class="fw-bold text-primary">John Doe</td>
-                        <td>Dr. Emily Johnson</td>
-                        <td>Mathematics</td>
-                        <td><i class="far fa-calendar-alt me-1"></i>2024-05-28 at 3:00 PM</td>
+                        <td class="fw-bold text-primary">{{ $booking->student->name }}</td>
+                        <td>{{ $booking->tutor->name }}</td>
+                        <td>{{ $booking->subject->name }}</td>
+                        <td><i class="far fa-calendar-alt me-1"></i>{{ $booking->scheduled_time->format('Y-m-d \a\t g:i A') }}</td>
                         <td>1h</td>
-                        <td class="fw-bold text-primary">$50</td>
-                        <td><span class="badge bg-primary bg-opacity-25 text-primary">scheduled</span></td>
-                        <td><a href="#" class="text-info"><i class="fas fa-eye"></i></a></td>
+                        <td class="fw-bold text-primary">${{ number_format($booking->price, 2) }}</td>
+                        <td><span class="badge bg-primary bg-opacity-25 text-primary">{{ $booking->status }}</span></td>
+                        <td>
+                            <a href="{{ route('admin.bookings.edit', $booking->id) }}" class="text-info me-2"><i class="fas fa-edit"></i></a>
+                            <form action="{{ route('admin.bookings.destroy', $booking->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link text-danger p-0" onclick="return confirm('Are you sure you want to delete this booking?')"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
                     </tr>
-                    <tr>
-                        <td class="fw-bold text-primary">Alice Smith</td>
-                        <td>Mark Thompson</td>
-                        <td>Physics</td>
-                        <td><i class="far fa-calendar-alt me-1"></i>2024-05-29 at 10:00 AM</td>
-                        <td>1.5h</td>
-                        <td class="fw-bold text-primary">$75</td>
-                        <td><span class="badge bg-success bg-opacity-25 text-success">completed</span></td>
-                        <td><a href="#" class="text-info"><i class="fas fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bold text-primary">Bob Johnson</td>
-                        <td>Sarah Wilson</td>
-                        <td>English</td>
-                        <td><i class="far fa-calendar-alt me-1"></i>2024-05-30 at 2:00 PM</td>
-                        <td>1h</td>
-                        <td class="fw-bold text-primary">$50</td>
-                        <td><span class="badge bg-danger bg-opacity-25 text-danger">cancelled</span></td>
-                        <td><a href="#" class="text-info"><i class="fas fa-eye"></i></a></td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

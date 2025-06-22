@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tutor extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'email',
@@ -40,9 +43,9 @@ class Tutor extends Model
         return $this->hasMany(Student::class);
     }
 
-    public function sessions(): HasMany
+    public function sessions(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
     {
-        return $this->hasMany(BookingSession::class);
+        return $this->hasManyThrough(BookingSession::class, Booking::class);
     }
 
     public function reviews(): HasMany

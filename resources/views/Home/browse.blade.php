@@ -6,23 +6,14 @@
         <h2 class="fw-bold">Browse Subjects</h2>
         <p class="text-muted">Find expert tutors in a wide range of academic subjects</p>
 
-        <form action="{{ route('browse.tutors') }}" method="GET" class="input-group mx-auto" style="max-width: 400px;">
-            <input type="text" name="q" class="form-control" placeholder="Search subjects...">
+        <form action="{{ route('browse') }}" method="GET" class="input-group mx-auto" style="max-width: 400px;">
+            <input type="text" name="q" class="form-control" placeholder="Search subjects..." value="{{ isset($query) ? $query : '' }}">
             <button type="submit" class="btn btn-outline-primary">Search</button>
         </form>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        @foreach([
-            ['Mathematics', 'Algebra, Calculus, Statistics, and more', 24, '📘'],
-            ['Sciences', 'Physics, Chemistry, Biology, and more', 18, '🔬'],
-            ['Languages', 'English, Spanish, French, and more', 32, '🗣️'],
-            ['Computer Science', 'Programming, Data Structures, Algorithms', 15, '💻'],
-            ['Business Studies', 'Economics, Management, Finance', 12, '📊'],
-            ['History', 'World History, US History, European History', 8, '🏛️'],
-            ['Arts', 'Drawing, Painting, Music, Theater', 9, '🎨'],
-            ['Literature', 'Classic Literature, Essays, Creative Writing', 14, '📚'],
-        ] as $subject)
+        @foreach($subjects as $subject)
         <div class="col">
             <div class="card h-100 shadow-sm border rounded-3">
                 <div class="card-body d-flex flex-column justify-content-between">

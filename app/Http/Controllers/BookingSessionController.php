@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookingSession;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BookingSessionController extends Controller
 {
@@ -34,10 +35,17 @@ class BookingSessionController extends Controller
             'start_time' => 'required|date',
             'end_time' => 'nullable|date',
             'meeting_link' => 'nullable|string',
+            'status' => 'nullable|in:pending,confirmed,completed,canceled',
             'notes' => 'nullable|string',
         ]);
+        if (empty($validated['meeting_link'])) {
+            $validated['meeting_link'] = 'https://meet.example.com/' . Str::random(10);
+        }
+        if (empty($validated['status'])) {
+            $validated['status'] = 'pending';
+        }
         BookingSession::create($validated);
-        return redirect()->route('bookingsession.index')->with('success', 'BookingSession created successfully');
+        return redirect()->route('BookingSession.index')->with('success', 'BookingSession created successfully');
     }
 
     /**
@@ -69,10 +77,11 @@ class BookingSessionController extends Controller
             'start_time' => 'required|date',
             'end_time' => 'nullable|date',
             'meeting_link' => 'nullable|string',
+            'status' => 'nullable|in:pending,confirmed,completed,canceled',
             'notes' => 'nullable|string',
         ]);
         $bookingSession->update($validated);
-        return redirect()->route('bookingsession.index')->with('success', 'BookingSession updated successfully');
+        return redirect()->route('BookingSession.index')->with('success', 'BookingSession updated successfully');
     }
 
     /**
@@ -82,6 +91,6 @@ class BookingSessionController extends Controller
     {
         $bookingSession = BookingSession::findOrFail($id);
         $bookingSession->delete();
-        return redirect()->route('bookingsession.index')->with('success', 'BookingSession deleted successfully');
+        return redirect()->route('BookingSession.index')->with('success', 'BookingSession deleted successfully');
     }
 }

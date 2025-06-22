@@ -1,7 +1,7 @@
 @extends('layouts.adminPnl')
 @section('title', 'Subject Management')
 @section('content')
-<div class="container py-4">
+<div class="container-fluid py-4">
     <h1 class="fw-bold mb-2 text-primary">Subject Management</h1>
     <p class="mb-4 text-muted">Manage subjects and assign tutors</p>
     <div class="card">
@@ -13,7 +13,7 @@
                         <input class="form-control form-control-sm me-2" type="search" placeholder="Search subjects...">
                         <button class="btn btn-outline-secondary btn-sm" type="button"><i class="fas fa-filter"></i> Filter</button>
                     </form>
-                    <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i> Add Subject</a>
+                    <a href="{{ route('admin.subjects.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i> Add Subject</a>
                 </div>
             </div>
             <table class="table align-middle">
@@ -29,42 +29,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($subjects as $subject)
                     <tr>
-                        <td class="fw-bold text-primary">Mathematics</td>
-                        <td>STEM</td>
-                        <td>15</td>
-                        <td>234</td>
+                        <td class="fw-bold text-primary">{{ $subject->name }}</td>
+                        <td>{{ $subject->level }}</td>
+                        <td>{{ $subject->tutors->count() }}</td>
+                        <td>{{ $subject->bookings->count() }}</td>
                         <td>1250</td>
                         <td><span class="badge bg-success">active</span></td>
                         <td>
-                            <a href="#" class="text-info me-2"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="text-dark"><i class="fas fa-edit"></i></a>
+                            <a href="{{ route('admin.subjects.edit', $subject->id) }}" class="text-info me-2"><i class="fas fa-edit"></i></a>
+                            <form action="{{ route('admin.subjects.destroy', $subject->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link text-danger p-0" onclick="return confirm('Are you sure you want to delete this subject?')"><i class="fas fa-trash"></i></button>
+                            </form>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="fw-bold text-primary">Physics</td>
-                        <td>STEM</td>
-                        <td>8</td>
-                        <td>156</td>
-                        <td>890</td>
-                        <td><span class="badge bg-success">active</span></td>
-                        <td>
-                            <a href="#" class="text-info me-2"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="text-dark"><i class="fas fa-edit"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bold text-primary">English Literature</td>
-                        <td>Arts</td>
-                        <td>12</td>
-                        <td>189</td>
-                        <td>1100</td>
-                        <td><span class="badge bg-success">active</span></td>
-                        <td>
-                            <a href="#" class="text-info me-2"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="text-dark"><i class="fas fa-edit"></i></a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

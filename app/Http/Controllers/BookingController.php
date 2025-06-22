@@ -84,7 +84,7 @@ class BookingController extends Controller
         return redirect()->route('booking.index')->with('success', 'Booking deleted successfully');
     }
 
-    // ✅ Tutor confirms a booking
+    //  Tutor confirms a booking
     public function confirm($id)
     {
         $booking = Booking::findOrFail($id);
@@ -92,7 +92,7 @@ class BookingController extends Controller
         return redirect()->route('booking.index')->with('success', 'Booking confirmed successfully');
     }
 
-    // ✅ Tutor cancels a booking
+    //  Tutor cancels a booking
     public function cancel($id)
     {
         $booking = Booking::findOrFail($id);
@@ -100,7 +100,7 @@ class BookingController extends Controller
         return redirect()->route('booking.index')->with('success', 'Booking cancelled successfully');
     }
 
-    // ✅ Admin views booking by filter
+    //  Admin views booking by filter
     public function filterByStatus($status)
     {
         $booking = Booking::where('status', $status)->with(['student', 'tutor'])->get();
