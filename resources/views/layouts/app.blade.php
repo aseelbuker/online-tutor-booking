@@ -52,7 +52,16 @@
                 <div class="d-flex">
                     <a href="/register" class="btn btn-outline-primary me-2">Signup</a>
                     <a href="/login" class="btn btn-primary">Login</a>
+                    
+
                 </div>
+                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+    @csrf
+    <button type="submit" class="btn btn-link p-0 text-danger">
+        Logout
+    </button>
+</form>
+                
             </div>
         </div>
     </nav>

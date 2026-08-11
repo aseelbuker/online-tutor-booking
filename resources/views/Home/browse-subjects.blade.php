@@ -10,11 +10,8 @@
                 <p class="text-muted">Find expert tutors in a wide range of academic and creative subjects</p>
             </div>
             <div class="btn-group" role="group">
-                <a href="{{ route('browse.tutors') }}" class="btn btn-outline-primary">Tutors</a>
-                <a href="{{ route('browse.subjects') }}" class="btn btn-primary active">Subjects</a>
             </div>
         </div>
-        <form action="{{ route('browse.subjects') }}" method="GET" class="input-group mb-4 mx-auto" style="max-width: 400px;">
             <input type="text" name="q" class="form-control" placeholder="Search subjects...">
             <button type="submit" class="btn btn-outline-primary">Search</button>
         </form>
